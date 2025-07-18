@@ -139,8 +139,8 @@ npm run dev
 
 ## Documentation
 
-- **[Getting Started Guide](GETTING-STARTED.md)** - Learn the core concepts and see examples
-- **[Build Instructions](BUILD.md)** - How to build, watch, and develop the framework
+- **[Getting Started Guide](../docs/GETTING-STARTED.md)** - Learn the core concepts and see examples
+- **[Build Instructions](../docs/BUILD.md)** - How to build, watch, and develop the framework
 - **[Interactive Style Guide](examples/style-guide.html)** - Live demos of all components and utilities
 - **[Examples](examples/)** - Real-world implementation examples
 

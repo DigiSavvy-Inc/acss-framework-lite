@@ -158,8 +158,8 @@ Override variables in your CSS:
 ## Documentation
 
 - **[Framework Documentation](custom-css-framework/README.md)** - Detailed framework features
-- **[Getting Started Guide](custom-css-framework/GETTING-STARTED.md)** - Usage examples and patterns
-- **[Build Instructions](custom-css-framework/BUILD.md)** - Development setup
+- **[Getting Started Guide](docs/GETTING-STARTED.md)** - Usage examples and patterns
+- **[Build Instructions](docs/BUILD.md)** - Development setup
 - **[Interactive Examples](custom-css-framework/examples/style-guide.html)** - Live demos
 
 ## Common Use Cases
