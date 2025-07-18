@@ -1,0 +1,347 @@
+// =============================================================================
+// Text/Typography Utilities
+// =============================================================================
+// Utility classes for typography styling
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// =============================================================================
+// Font Size Utilities - T-Shirt Sizing
+// =============================================================================
+
+// Text sizes with fluid option
+@each $size in map.keys(config('sizes')) {
+  .text--#{$size} {
+    font-size: var(--text-#{$size}) !important;
+    line-height: var(--text-#{$size}-line-height) !important;
+    letter-spacing: var(--text-#{$size}-letter-spacing) !important;
+  }
+  
+  // Fluid variant
+  .text--#{$size}-fluid {
+    font-size: var(--text-#{$size}-fluid) !important;
+    line-height: var(--text-#{$size}-line-height) !important;
+    letter-spacing: var(--text-#{$size}-letter-spacing) !important;
+  }
+}
+
+// Heading utilities
+@for $i from 1 through 6 {
+  .text--h#{$i} {
+    font-size: var(--h#{$i}) !important;
+    line-height: var(--h#{$i}-line-height) !important;
+    letter-spacing: var(--h#{$i}-letter-spacing) !important;
+    font-weight: var(--h#{$i}-font-weight) !important;
+  }
+  
+  // Fluid variant
+  .text--h#{$i}-fluid {
+    font-size: var(--h#{$i}-fluid) !important;
+    line-height: var(--h#{$i}-line-height) !important;
+    letter-spacing: var(--h#{$i}-letter-spacing) !important;
+    font-weight: var(--h#{$i}-font-weight) !important;
+  }
+}
+
+// Special sizes
+.text--display-1 {
+  font-size: var(--text-display-1) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.text--display-2 {
+  font-size: var(--text-display-2) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.text--caption {
+  font-size: var(--text-caption) !important;
+  line-height: 1.4 !important;
+}
+
+.text--small {
+  font-size: var(--text-small) !important;
+  line-height: 1.5 !important;
+}
+
+// =============================================================================
+// Font Weight Utilities
+// =============================================================================
+
+@each $name, $weight in config('font-weights') {
+  .text--#{$name} {
+    font-weight: var(--font-weight-#{$name}) !important;
+  }
+}
+
+// Numeric weights
+@for $i from 1 through 9 {
+  .text--#{$i * 100} {
+    font-weight: #{$i * 100} !important;
+  }
+}
+
+// =============================================================================
+// Font Family Utilities
+// =============================================================================
+
+@each $name, $stack in config('font-families') {
+  .font--#{$name} {
+    font-family: var(--font-#{$name}) !important;
+  }
+}
+
+// =============================================================================
+// Text Alignment Utilities
+// =============================================================================
+
+.text--left {
+  text-align: left !important;
+}
+
+.text--center {
+  text-align: center !important;
+}
+
+.text--right {
+  text-align: right !important;
+}
+
+.text--justify {
+  text-align: justify !important;
+}
+
+// Responsive alignment
+@each $bp-name, $bp-value in config('breakpoints') {
+  @media (min-width: $bp-value) {
+    .#{$bp-name}\:text--left {
+      text-align: left !important;
+    }
+    
+    .#{$bp-name}\:text--center {
+      text-align: center !important;
+    }
+    
+    .#{$bp-name}\:text--right {
+      text-align: right !important;
+    }
+  }
+}
+
+// =============================================================================
+// Text Style Utilities
+// =============================================================================
+
+// Font style
+.text--italic {
+  font-style: italic !important;
+}
+
+.text--oblique {
+  font-style: oblique !important;
+}
+
+.text--normal-style {
+  font-style: normal !important;
+}
+
+// =============================================================================
+// Text Transform Utilities
+// =============================================================================
+
+.text--uppercase {
+  text-transform: uppercase !important;
+}
+
+.text--lowercase {
+  text-transform: lowercase !important;
+}
+
+.text--capitalize {
+  text-transform: capitalize !important;
+}
+
+.text--normal-case {
+  text-transform: none !important;
+}
+
+// =============================================================================
+// Text Decoration Utilities
+// =============================================================================
+
+.text--underline {
+  text-decoration: underline !important;
+  text-decoration-thickness: var(--text-decoration-thickness) !important;
+  text-underline-offset: var(--text-underline-offset) !important;
+}
+
+.text--line-through {
+  text-decoration: line-through !important;
+}
+
+.text--no-underline {
+  text-decoration: none !important;
+}
+
+// Fancy underlines
+.text--underline-wavy {
+  text-decoration: underline wavy !important;
+  text-decoration-thickness: var(--text-decoration-thickness) !important;
+  text-underline-offset: var(--text-underline-offset) !important;
+}
+
+.text--underline-dotted {
+  text-decoration: underline dotted !important;
+  text-decoration-thickness: var(--text-decoration-thickness) !important;
+  text-underline-offset: var(--text-underline-offset) !important;
+}
+
+.text--underline-dashed {
+  text-decoration: underline dashed !important;
+  text-decoration-thickness: var(--text-decoration-thickness) !important;
+  text-underline-offset: var(--text-underline-offset) !important;
+}
+
+// =============================================================================
+// Line Height Utilities
+// =============================================================================
+
+.text--leading-none {
+  line-height: 1 !important;
+}
+
+.text--leading-tight {
+  line-height: 1.25 !important;
+}
+
+.text--leading-snug {
+  line-height: 1.375 !important;
+}
+
+.text--leading-normal {
+  line-height: 1.5 !important;
+}
+
+.text--leading-relaxed {
+  line-height: 1.625 !important;
+}
+
+.text--leading-loose {
+  line-height: 2 !important;
+}
+
+// =============================================================================
+// Letter Spacing Utilities
+// =============================================================================
+
+.text--tracking-tighter {
+  letter-spacing: -0.05em !important;
+}
+
+.text--tracking-tight {
+  letter-spacing: -0.025em !important;
+}
+
+.text--tracking-normal {
+  letter-spacing: 0 !important;
+}
+
+.text--tracking-wide {
+  letter-spacing: 0.025em !important;
+}
+
+.text--tracking-wider {
+  letter-spacing: 0.05em !important;
+}
+
+.text--tracking-widest {
+  letter-spacing: 0.1em !important;
+}
+
+// =============================================================================
+// Text Wrapping and Overflow
+// =============================================================================
+
+.text--wrap {
+  white-space: normal !important;
+}
+
+.text--nowrap {
+  white-space: nowrap !important;
+}
+
+.text--pre {
+  white-space: pre !important;
+}
+
+.text--pre-wrap {
+  white-space: pre-wrap !important;
+}
+
+.text--pre-line {
+  white-space: pre-line !important;
+}
+
+.text--break-words {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.text--break-all {
+  word-break: break-all !important;
+}
+
+.text--truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+// =============================================================================
+// Text Balance and Readability
+// =============================================================================
+
+.text--balance {
+  text-wrap: balance !important;
+}
+
+.text--pretty {
+  text-wrap: pretty !important;
+}
+
+.text--max-width {
+  max-width: var(--text-max-width, 65ch) !important;
+}
+
+// =============================================================================
+// List Style Utilities
+// =============================================================================
+
+.list--none {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.list--disc {
+  list-style-type: disc !important;
+}
+
+.list--decimal {
+  list-style-type: decimal !important;
+}
+
+.list--square {
+  list-style-type: square !important;
+}
+
+.list--inside {
+  list-style-position: inside !important;
+}
+
+.list--outside {
+  list-style-position: outside !important;
+}

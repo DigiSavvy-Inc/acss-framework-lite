@@ -1,0 +1,272 @@
+// =============================================================================
+// Alert Components
+// =============================================================================
+// Alert/notification components with contextual colors
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// =============================================================================
+// Base Alert Component
+// =============================================================================
+
+.alert {
+  position: relative;
+  padding: var(--space-m) var(--space-l);
+  margin-bottom: var(--space-m);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-m);
+  font-size: var(--text-m);
+  line-height: 1.5;
+  
+  // Alert with close button spacing
+  &.alert--dismissible {
+    padding-right: calc(var(--space-l) + 2rem);
+  }
+  
+  // Close button
+  .alert__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: var(--space-m);
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+    
+    &:hover {
+      opacity: 1;
+    }
+    
+    &:focus {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+  }
+  
+  // Alert content elements
+  .alert__title {
+    margin: 0 0 var(--space-xs) 0;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-l);
+    line-height: 1.2;
+  }
+  
+  .alert__content {
+    margin: 0;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Icon support
+  .alert__icon {
+    display: inline-block;
+    margin-right: var(--space-s);
+    vertical-align: middle;
+  }
+}
+
+// =============================================================================
+// Alert Variants - Using ACSS Color System
+// =============================================================================
+
+// Success Alert
+.alert--success {
+  background-color: var(--success-ultra-light);
+  border-color: var(--success-light);
+  color: var(--success-dark);
+  
+  .alert__title {
+    color: var(--success-ultra-dark);
+  }
+}
+
+// Warning Alert
+.alert--warning {
+  background-color: var(--warning-ultra-light);
+  border-color: var(--warning-light);
+  color: var(--warning-dark);
+  
+  .alert__title {
+    color: var(--warning-ultra-dark);
+  }
+}
+
+// Danger/Error Alert
+.alert--danger {
+  background-color: var(--danger-ultra-light);
+  border-color: var(--danger-light);
+  color: var(--danger-dark);
+  
+  .alert__title {
+    color: var(--danger-ultra-dark);
+  }
+}
+
+// Info Alert
+.alert--info {
+  background-color: var(--info-ultra-light);
+  border-color: var(--info-light);
+  color: var(--info-dark);
+  
+  .alert__title {
+    color: var(--info-ultra-dark);
+  }
+}
+
+// Primary Alert
+.alert--primary {
+  background-color: var(--primary-ultra-light);
+  border-color: var(--primary-light);
+  color: var(--primary-dark);
+  
+  .alert__title {
+    color: var(--primary-ultra-dark);
+  }
+}
+
+// Neutral Alert
+.alert--neutral {
+  background-color: var(--neutral-ultra-light);
+  border-color: var(--neutral-light);
+  color: var(--neutral-dark);
+  
+  .alert__title {
+    color: var(--neutral-ultra-dark);
+  }
+}
+
+// =============================================================================
+// Alert Style Modifiers
+// =============================================================================
+
+// Solid variant - filled backgrounds
+.alert--solid {
+  &.alert--success {
+    background-color: var(--success);
+    border-color: var(--success-dark);
+    color: var(--white);
+    
+    .alert__title {
+      color: var(--white);
+    }
+  }
+  
+  &.alert--warning {
+    background-color: var(--warning);
+    border-color: var(--warning-dark);
+    color: var(--white);
+    
+    .alert__title {
+      color: var(--white);
+    }
+  }
+  
+  &.alert--danger {
+    background-color: var(--danger);
+    border-color: var(--danger-dark);
+    color: var(--white);
+    
+    .alert__title {
+      color: var(--white);
+    }
+  }
+  
+  &.alert--info {
+    background-color: var(--info);
+    border-color: var(--info-dark);
+    color: var(--white);
+    
+    .alert__title {
+      color: var(--white);
+    }
+  }
+  
+  &.alert--primary {
+    background-color: var(--primary);
+    border-color: var(--primary-dark);
+    color: var(--white);
+    
+    .alert__title {
+      color: var(--white);
+    }
+  }
+}
+
+// Outlined variant - just borders
+.alert--outline {
+  background-color: transparent;
+  
+  &.alert--success {
+    border-color: var(--success);
+    color: var(--success);
+  }
+  
+  &.alert--warning {
+    border-color: var(--warning);
+    color: var(--warning);
+  }
+  
+  &.alert--danger {
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+  
+  &.alert--info {
+    border-color: var(--info);
+    color: var(--info);
+  }
+  
+  &.alert--primary {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+// =============================================================================
+// Alert Size Modifiers
+// =============================================================================
+
+.alert--sm {
+  padding: var(--space-s) var(--space-m);
+  font-size: var(--text-s);
+  
+  .alert__title {
+    font-size: var(--text-m);
+  }
+  
+  &.alert--dismissible {
+    padding-right: calc(var(--space-m) + 1.5rem);
+  }
+  
+  .alert__close {
+    padding: var(--space-s);
+    font-size: 1rem;
+  }
+}
+
+.alert--lg {
+  padding: var(--space-l) var(--space-xl);
+  font-size: var(--text-l);
+  
+  .alert__title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-s);
+  }
+  
+  &.alert--dismissible {
+    padding-right: calc(var(--space-xl) + 2.5rem);
+  }
+  
+  .alert__close {
+    padding: var(--space-l);
+    font-size: 1.4rem;
+  }
+}

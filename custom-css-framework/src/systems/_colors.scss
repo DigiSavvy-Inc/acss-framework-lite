@@ -1,0 +1,142 @@
+// =============================================================================
+// Color System
+// =============================================================================
+// Generates comprehensive color variables with automatic variations
+
+@use 'sass:map';
+@use 'sass:color';
+@use '../foundation/functions' as *;
+
+// =============================================================================
+// Color Variable Generation
+// =============================================================================
+
+:root {
+  // ==========================================================================
+  // Brand Colors with Automatic Variations
+  // ==========================================================================
+  
+  @each $name, $base-color in config('colors') {
+    // Base color
+    --#{$name}: #{$base-color};
+    
+    // HSL components for calc() operations
+    --#{$name}-h: #{color.hue($base-color)};
+    --#{$name}-s: #{color.saturation($base-color)};
+    --#{$name}-l: #{color.lightness($base-color)};
+    
+    // Lightness variations
+    --#{$name}-ultra-light: #{color-variation($base-color, 'ultra-light')};
+    --#{$name}-light: #{color-variation($base-color, 'light')};
+    --#{$name}-dark: #{color-variation($base-color, 'dark')};
+    --#{$name}-ultra-dark: #{color-variation($base-color, 'ultra-dark')};
+    
+    // Interactive states
+    --#{$name}-hover: #{color-variation($base-color, 'hover')};
+    
+    // Transparency variants (10% to 90%)
+    @for $i from 1 through 9 {
+      --#{$name}-trans-#{$i * 10}: #{color.change($base-color, $alpha: $i * 0.1)};
+    }
+  }
+  
+  // ==========================================================================
+  // Contextual Colors with Variations
+  // ==========================================================================
+  
+  @each $name, $base-color in config('contextual-colors') {
+    // Base color
+    --#{$name}: #{$base-color};
+    
+    // HSL components
+    --#{$name}-h: #{color.hue($base-color)};
+    --#{$name}-s: #{color.saturation($base-color)};
+    --#{$name}-l: #{color.lightness($base-color)};
+    
+    // Lightness variations
+    --#{$name}-ultra-light: #{color-variation($base-color, 'ultra-light')};
+    --#{$name}-light: #{color-variation($base-color, 'light')};
+    --#{$name}-dark: #{color-variation($base-color, 'dark')};
+    --#{$name}-ultra-dark: #{color-variation($base-color, 'ultra-dark')};
+    
+    // Interactive states
+    --#{$name}-hover: #{color-variation($base-color, 'hover')};
+    
+    // Transparency variants
+    @for $i from 1 through 9 {
+      --#{$name}-trans-#{$i * 10}: #{color.change($base-color, $alpha: $i * 0.1)};
+    }
+  }
+  
+  // ==========================================================================
+  // Semantic Color Assignments
+  // ==========================================================================
+  
+  // Text colors
+  --text-color: var(--base);
+  --text-color-light: var(--base-light);
+  --text-color-muted: var(--neutral);
+  --text-color-inverse: var(--white);
+  
+  // Background colors
+  --bg-color: var(--white);
+  --bg-color-alt: var(--neutral-ultra-light);
+  --bg-color-dark: var(--shade);
+  
+  // Border colors
+  --border-color: var(--neutral);
+  --border-color-light: var(--neutral-light);
+  --border-color-dark: var(--neutral-dark);
+  
+  // Focus colors
+  --focus-color: var(--primary);
+  --focus-color-offset: var(--primary-trans-20);
+  
+  // ==========================================================================
+  // Color Utilities CSS Variables
+  // ==========================================================================
+  
+  // Generate utility variables for all colors
+  @each $name, $base-color in config('colors') {
+    --bg-#{$name}: var(--#{$name});
+    --text-#{$name}: var(--#{$name});
+    --border-#{$name}: var(--#{$name});
+    
+    // Variations for utilities
+    @each $variation in ('ultra-light', 'light', 'dark', 'ultra-dark', 'hover') {
+      --bg-#{$name}-#{$variation}: var(--#{$name}-#{$variation});
+      --text-#{$name}-#{$variation}: var(--#{$name}-#{$variation});
+      --border-#{$name}-#{$variation}: var(--#{$name}-#{$variation});
+    }
+    
+    // Transparency variants for utilities
+    @for $i from 1 through 9 {
+      $opacity: $i * 10;
+      --bg-#{$name}-trans-#{$opacity}: var(--#{$name}-trans-#{$opacity});
+      --text-#{$name}-trans-#{$opacity}: var(--#{$name}-trans-#{$opacity});
+      --border-#{$name}-trans-#{$opacity}: var(--#{$name}-trans-#{$opacity});
+    }
+  }
+  
+  // Same for contextual colors
+  @each $name, $base-color in config('contextual-colors') {
+    --bg-#{$name}: var(--#{$name});
+    --text-#{$name}: var(--#{$name});
+    --border-#{$name}: var(--#{$name});
+    
+    // Variations for utilities
+    @each $variation in ('ultra-light', 'light', 'dark', 'ultra-dark', 'hover') {
+      --bg-#{$name}-#{$variation}: var(--#{$name}-#{$variation});
+      --text-#{$name}-#{$variation}: var(--#{$name}-#{$variation});
+      --border-#{$name}-#{$variation}: var(--#{$name}-#{$variation});
+    }
+    
+    // Transparency variants for utilities
+    @for $i from 1 through 9 {
+      $opacity: $i * 10;
+      --bg-#{$name}-trans-#{$opacity}: var(--#{$name}-trans-#{$opacity});
+      --text-#{$name}-trans-#{$opacity}: var(--#{$name}-trans-#{$opacity});
+      --border-#{$name}-trans-#{$opacity}: var(--#{$name}-trans-#{$opacity});
+    }
+  }
+}

@@ -1,0 +1,241 @@
+// =============================================================================
+// Core Functions
+// =============================================================================
+// Mathematical and utility functions used throughout the framework
+
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+@use 'sass:color';
+
+// =============================================================================
+// Unit Conversion Functions
+// =============================================================================
+
+// Strip unit from a value
+@function strip-unit($value) {
+  @return math.div($value, $value * 0 + 1);
+}
+
+// Convert pixels to rem
+// Usage: padding: rem(24); // 24px -> 1.5rem (assuming 16px base)
+@function rem($pixels, $base: null) {
+  @if $base == null {
+    $base: map.get($framework-config, 'base-font-size');
+  }
+  @if unitless($pixels) {
+    @return math.div($pixels, $base) * 1rem;
+  }
+  @return math.div(strip-unit($pixels), $base) * 1rem;
+}
+
+// Alias for rem() to match ACSS
+@function ctr($pixels, $base: null) {
+  @return rem($pixels, $base);
+}
+
+// Convert to percentage
+@function percent($value) {
+  @if unit($value) == '%' {
+    @return $value;
+  }
+  @return $value * 1%;
+}
+
+// =============================================================================
+// Mathematical Functions
+// =============================================================================
+
+// Power function (exponentiation)
+// Usage: font-size: pow(1.25, 2); // 1.25^2 = 1.5625
+@function pow($base, $exponent) {
+  @if $exponent == 0 {
+    @return 1;
+  }
+  
+  // For integer exponents, use simple multiplication
+  @if $exponent == math.round($exponent) {
+    $result: 1;
+    
+    @if $exponent > 0 {
+      @for $i from 1 through $exponent {
+        $result: $result * $base;
+      }
+    } @else {
+      @for $i from 1 through math.abs($exponent) {
+        $result: math.div($result, $base);
+      }
+    }
+    
+    @return $result;
+  }
+  
+  // For decimal exponents, use math.pow
+  @return math.pow($base, $exponent);
+}
+
+// Round to specified decimal places
+@function decimal-round($value, $decimals: 2) {
+  $factor: pow(10, $decimals);
+  @return math.div(math.round($value * $factor), $factor);
+}
+
+// =============================================================================
+// Fluid/Clamp Functions
+// =============================================================================
+
+// Create fluid values that scale between min and max based on viewport
+// Usage: padding: fluid(40, 80); // Scales from 40px to 80px
+@function fluid($min, $max, $min-vw: null, $max-vw: null) {
+  @if $min-vw == null {
+    $min-vw: map.get(map.get($framework-config, 'breakpoints'), 'mobile');
+  }
+  @if $max-vw == null {
+    $max-vw: map.get(map.get($framework-config, 'breakpoints'), 'wide');
+  }
+  
+  $min-rem: rem($min);
+  $max-rem: rem($max);
+  $min-vw-rem: rem($min-vw);
+  $max-vw-rem: rem($max-vw);
+  
+  $slope: math.div(strip-unit($max-rem) - strip-unit($min-rem), strip-unit($max-vw-rem) - strip-unit($min-vw-rem));
+  $intercept: strip-unit($min-rem) - $slope * strip-unit($min-vw-rem);
+  
+  @return clamp(
+    #{$min-rem},
+    #{decimal-round($intercept, 4)}rem + #{decimal-round($slope * 100, 4)}vw,
+    #{$max-rem}
+  );
+}
+
+// =============================================================================
+// Configuration Access Functions
+// =============================================================================
+
+// Get a value from the framework config
+@function config($keys...) {
+  $map: $framework-config;
+  
+  @each $key in $keys {
+    @if type-of($map) == 'map' and map.has-key($map, $key) {
+      $map: map.get($map, $key);
+    } @else {
+      @error "Configuration key '#{$key}' not found in path: #{$keys}";
+    }
+  }
+  
+  @return $map;
+}
+
+// Get a size multiplier
+@function size-multiplier($size) {
+  @return map.get(config('sizes'), $size);
+}
+
+// =============================================================================
+// Color Functions
+// =============================================================================
+
+// Generate color variations
+@function color-variation($color, $variation) {
+  @if $variation == 'ultra-light' {
+    @return color.scale($color, $lightness: 85%);
+  }
+  @if $variation == 'light' {
+    @return color.scale($color, $lightness: 45%);
+  }
+  @if $variation == 'dark' {
+    @return color.scale($color, $lightness: -25%);
+  }
+  @if $variation == 'ultra-dark' {
+    @return color.scale($color, $lightness: -50%);
+  }
+  @if $variation == 'hover' {
+    @return color.scale($color, $lightness: -10%);
+  }
+  @return $color;
+}
+
+// Get HSL values from a color
+@function get-hsl($color) {
+  @return (
+    'h': color.hue($color),
+    's': color.saturation($color),
+    'l': color.lightness($color)
+  );
+}
+
+// =============================================================================
+// Scale Generation Functions
+// =============================================================================
+
+// Generate a scale based on a ratio
+@function generate-scale($base, $ratio, $steps, $direction: 'up') {
+  $scale: ();
+  
+  @for $i from 0 through $steps {
+    @if $direction == 'up' {
+      $value: $base * pow($ratio, $i);
+      $scale: map.set($scale, $i, $value);
+    } @else {
+      $value: $base * pow($ratio, -$i);
+      $scale: map.set($scale, $i, $value);
+    }
+  }
+  
+  @return $scale;
+}
+
+// Generate type scale
+@function generate-type-scale() {
+  $base: 1rem;
+  $ratio: config('type-scale');
+  $sizes: config('sizes');
+  $scale: ();
+  
+  // Pre-calculated scale positions for each size
+  $scale-positions: (
+    'xs': -2,   // Two steps down
+    's': -1,    // One step down  
+    'm': 0,     // Base size
+    'l': 1,     // One step up
+    'xl': 2,    // Two steps up
+    'xxl': 3,   // Three steps up
+  );
+  
+  @each $size, $position in $scale-positions {
+    @if $position == 0 {
+      $scale: map.set($scale, $size, $base);
+    } @else if $position > 0 {
+      $value: $base;
+      @for $i from 1 through $position {
+        $value: $value * $ratio;
+      }
+      $scale: map.set($scale, $size, $value);
+    } @else {
+      $value: $base;
+      @for $i from 1 through math.abs($position) {
+        $value: math.div($value, $ratio);
+      }
+      $scale: map.set($scale, $size, $value);
+    }
+  }
+  
+  @return $scale;
+}
+
+// Generate spacing scale
+@function generate-spacing-scale() {
+  $base: config('base-spacing');
+  $sizes: config('sizes');
+  $scale: ();
+  
+  @each $size, $multiplier in $sizes {
+    $value: $base * $multiplier;
+    $scale: map.set($scale, $size, $value);
+  }
+  
+  @return $scale;
+}

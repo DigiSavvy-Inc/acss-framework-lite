@@ -1,0 +1,631 @@
+// =============================================================================
+// Button Components
+// =============================================================================
+// Base button component with color variants and modifiers
+
+.btn {
+    // Base button styles
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-family: var(--font-primary);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    line-height: var(--btn-line-height);
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: var(--btn-border-width) solid transparent;
+    border-radius: var(--btn-border-radius);
+    transition: var(--btn-transition);
+
+    // Focus state
+    &:focus {
+        outline: 0;
+        box-shadow: var(--btn-focus-box-shadow);
+    }
+
+    // Disabled state
+    &:disabled,
+    &.disabled {
+        opacity: var(--btn-disabled-opacity);
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // Icon spacing
+    .icon {
+        &:first-child:not(:last-child) {
+            margin-right: var(--btn-icon-spacing);
+        }
+        &:last-child:not(:first-child) {
+            margin-left: var(--btn-icon-spacing);
+        }
+    }
+}
+
+// =============================================================================
+// Color Variants
+// =============================================================================
+
+// Primary buttons
+.btn--primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-ultra-light);
+
+    &:hover {
+        background-color: var(--primary-hover);
+        border-color: var(--primary-hover);
+        color: var(--primary-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--primary-ultra-dark);
+        border-color: var(--primary-ultra-dark);
+        color: var(--primary-ultra-light);
+    }
+}
+
+// Secondary buttons
+.btn--secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--secondary-ultra-dark);
+
+    &:hover {
+        background-color: var(--secondary-hover);
+        border-color: var(--secondary-hover);
+        color: var(--secondary-ultra-dark);
+    }
+
+    &:active {
+        background-color: var(--secondary-ultra-dark);
+        border-color: var(--secondary-ultra-dark);
+        color: var(--secondary-ultra-light);
+    }
+}
+
+// Accent buttons
+.btn--accent {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ultra-light);
+
+    &:hover {
+        background-color: var(--accent-hover);
+        border-color: var(--accent-hover);
+        color: var(--accent-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--accent-ultra-dark);
+        border-color: var(--accent-ultra-dark);
+        color: var(--accent-ultra-light);
+    }
+}
+
+// Action buttons
+.btn--action {
+    background-color: var(--action);
+    border-color: var(--action);
+    color: var(--action-ultra-light);
+
+    &:hover {
+        background-color: var(--action-hover);
+        border-color: var(--action-hover);
+        color: var(--action-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--action-ultra-dark);
+        border-color: var(--action-ultra-dark);
+        color: var(--action-ultra-light);
+    }
+}
+
+// Neutral buttons
+.btn--neutral {
+    background-color: var(--neutral);
+    border-color: var(--neutral);
+    color: var(--neutral-ultra-light);
+
+    &:hover {
+        background-color: var(--neutral-hover);
+        border-color: var(--neutral-hover);
+        color: var(--neutral-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--neutral-dark);
+        border-color: var(--neutral-dark);
+        color: var(--neutral-ultra-light);
+    }
+}
+
+// =============================================================================
+// Style Variants
+// =============================================================================
+
+// Outline buttons (single modifier that works with any color)
+.btn--outline {
+    background-color: transparent;
+}
+
+// Outline + Primary
+.btn--primary.btn--outline {
+    color: var(--primary);
+
+    &:hover {
+        background-color: var(--primary);
+        color: var(--primary-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        color: var(--primary-ultra-light);
+    }
+}
+
+// Outline + Secondary
+.btn--secondary.btn--outline {
+    color: var(--secondary-dark);
+    border-color: var(--secondary-dark);
+
+    &:hover {
+        background-color: var(--secondary-dark);
+        color: var(--secondary-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--secondary-dark);
+        border-color: var(--secondary-dark);
+        color: var(--secondary-ultra-dark);
+    }
+}
+
+// Outline + Accent
+.btn--accent.btn--outline {
+    color: var(--accent);
+
+    &:hover {
+        background-color: var(--accent);
+        color: var(--accent-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--accent-dark);
+        border-color: var(--accent-dark);
+        color: var(--accent-ultra-light);
+    }
+}
+
+// Outline + Action
+.btn--action.btn--outline {
+    color: var(--action);
+
+    &:hover {
+        background-color: var(--action);
+        color: var(--action-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--action-dark);
+        border-color: var(--action-dark);
+        color: var(--action-ultra-light);
+    }
+}
+
+// Outline + Neutral
+.btn--neutral.btn--outline {
+    color: var(--neutral);
+
+    &:hover {
+        background-color: var(--neutral);
+        color: var(--neutral-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--neutral-dark);
+        border-color: var(--neutral-dark);
+        color: var(--neutral-ultra-dark);
+    }
+}
+
+// Light variants (for dark backgrounds)
+.btn--primary.btn--light {
+    background-color: var(--primary-ultra-light);
+    border-color: var(--primary-ultra-light);
+    color: var(--primary);
+
+    &:hover {
+        background-color: var(--primary-light);
+        border-color: var(--primary-light);
+        color: var(--primary-ultra-dark);
+    }
+
+    &:active {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: var(--primary-ultra-light);
+    }
+}
+
+.btn--secondary.btn--light {
+    background-color: var(--secondary-ultra-light);
+    border-color: var(--secondary-ultra-light);
+    color: var(--secondary-ultra-dark);
+
+    &:hover {
+        background-color: var(--secondary-light);
+        border-color: var(--secondary-light);
+        color: var(--secondary-ultra-dark);
+    }
+
+    &:active {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--secondary-ultra-dark);
+    }
+}
+
+.btn--accent.btn--light {
+    background-color: var(--accent-ultra-light);
+    border-color: var(--accent-ultra-light);
+    color: var(--accent);
+
+    &:hover {
+        background-color: var(--accent-light);
+        border-color: var(--accent-light);
+        color: var(--accent-ultra-dark);
+    }
+
+    &:active {
+        background-color: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-ultra-light);
+    }
+}
+
+.btn--action.btn--light {
+    background-color: var(--action-ultra-light);
+    border-color: var(--action-ultra-light);
+    color: var(--action);
+
+    &:hover {
+        background-color: var(--action-light);
+        border-color: var(--action-light);
+        color: var(--action-ultra-dark);
+    }
+
+    &:active {
+        background-color: var(--action);
+        border-color: var(--action);
+        color: var(--action-ultra-light);
+    }
+}
+
+.btn--neutral.btn--light {
+    background-color: var(--neutral-ultra-light);
+    border-color: var(--neutral-ultra-light);
+    color: var(--neutral-ultra-dark);
+
+    &:hover {
+        background-color: var(--neutral-light);
+        border-color: var(--neutral-light);
+        color: var(--neutral-ultra-dark);
+    }
+
+    &:active {
+        background-color: var(--neutral);
+        border-color: var(--neutral);
+        color: var(--neutral-ultra-light);
+    }
+}
+
+// Dark variants
+.btn--primary.btn--dark {
+    background-color: var(--primary-ultra-dark);
+    border-color: var(--primary-ultra-dark);
+    color: var(--primary-ultra-light);
+
+    &:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        color: var(--primary-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: var(--primary-ultra-light);
+    }
+}
+
+.btn--secondary.btn--dark {
+    background-color: var(--secondary-ultra-dark);
+    border-color: var(--secondary-ultra-dark);
+    color: var(--secondary-ultra-light);
+
+    &:hover {
+        background-color: var(--secondary-dark);
+        border-color: var(--secondary-dark);
+        color: var(--secondary-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--secondary-ultra-light);
+    }
+}
+
+.btn--accent.btn--dark {
+    background-color: var(--accent-ultra-dark);
+    border-color: var(--accent-ultra-dark);
+    color: var(--accent-ultra-light);
+
+    &:hover {
+        background-color: var(--accent-dark);
+        border-color: var(--accent-dark);
+        color: var(--accent-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-ultra-light);
+    }
+}
+
+.btn--action.btn--dark {
+    background-color: var(--action-ultra-dark);
+    border-color: var(--action-ultra-dark);
+    color: var(--action-ultra-light);
+
+    &:hover {
+        background-color: var(--action-dark);
+        border-color: var(--action-dark);
+        color: var(--action-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--action);
+        border-color: var(--action);
+        color: var(--action-ultra-light);
+    }
+}
+
+.btn--neutral.btn--dark {
+    background-color: var(--neutral-ultra-dark);
+    border-color: var(--neutral-ultra-dark);
+    color: var(--neutral-ultra-light);
+
+    &:hover {
+        background-color: var(--neutral-dark);
+        border-color: var(--neutral-dark);
+        color: var(--neutral-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--neutral);
+        border-color: var(--neutral);
+        color: var(--neutral-ultra-light);
+    }
+}
+
+// Light outline combination
+.btn--primary.btn--light.btn--outline {
+    background-color: transparent;
+    color: var(--primary-ultra-light);
+    border-color: var(--primary-ultra-light);
+
+    &:hover {
+        background-color: var(--primary-ultra-light);
+        color: var(--primary);
+    }
+
+    &:active {
+        background-color: var(--primary-light);
+        border-color: var(--primary-light);
+        color: var(--primary-ultra-dark);
+    }
+}
+
+.btn--secondary.btn--light.btn--outline {
+    background-color: transparent;
+    color: var(--secondary-ultra-light);
+    border-color: var(--secondary-ultra-light);
+
+    &:hover {
+        background-color: var(--secondary-ultra-dark);
+        border-color: var(--secondary-ultra-light);
+        color: var(--secondary-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--secondary-light);
+        border-color: var(--secondary-light);
+        color: var(--secondary-ultra-dark);
+    }
+}
+
+.btn--accent.btn--light.btn--outline {
+    background-color: transparent;
+    color: var(--accent-ultra-light);
+    border-color: var(--accent-ultra-light);
+
+    &:hover {
+        background-color: var(--accent-ultra-light);
+        color: var(--accent);
+    }
+
+    &:active {
+        background-color: var(--accent-light);
+        border-color: var(--accent-light);
+        color: var(--accent-ultra-dark);
+    }
+}
+
+.btn--action.btn--light.btn--outline {
+    background-color: transparent;
+    color: var(--action-ultra-light);
+    border-color: var(--action-ultra-light);
+
+    &:hover {
+        background-color: var(--action-ultra-light);
+        color: var(--action);
+    }
+
+    &:active {
+        background-color: var(--action-light);
+        border-color: var(--action-light);
+        color: var(--action-ultra-dark);
+    }
+}
+
+.btn--neutral.btn--light.btn--outline {
+    background-color: transparent;
+    color: var(--neutral-ultra-light);
+    border-color: var(--neutral-ultra-light);
+
+    &:hover {
+        background-color: var(--neutral-ultra-light);
+        color: var(--neutral-ultra-dark);
+    }
+
+    &:active {
+        background-color: var(--neutral-light);
+        border-color: var(--neutral-light);
+        color: var(--neutral-ultra-dark);
+    }
+}
+
+// Dark outline combination
+.btn--primary.btn--dark.btn--outline {
+    background-color: transparent;
+    color: var(--primary-ultra-dark);
+    border-color: var(--primary-ultra-dark);
+
+    &:hover {
+        background-color: var(--primary-ultra-dark);
+        color: var(--primary-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        color: var(--primary-ultra-light);
+    }
+}
+
+.btn--secondary.btn--dark.btn--outline {
+    background-color: transparent;
+    color: var(--secondary-ultra-dark);
+    border-color: var(--secondary-ultra-dark);
+
+    &:hover {
+        background-color: var(--secondary-ultra-dark);
+        color: var(--secondary-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--secondary-dark);
+        border-color: var(--secondary-dark);
+        color: var(--secondary-ultra-light);
+    }
+}
+
+.btn--accent.btn--dark.btn--outline {
+    background-color: transparent;
+    color: var(--accent-ultra-dark);
+    border-color: var(--accent-ultra-dark);
+
+    &:hover {
+        background-color: var(--accent-ultra-dark);
+        color: var(--accent-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--accent-dark);
+        border-color: var(--accent-dark);
+        color: var(--accent-ultra-light);
+    }
+}
+
+.btn--action.btn--dark.btn--outline {
+    background-color: transparent;
+    color: var(--action-ultra-dark);
+    border-color: var(--action-ultra-dark);
+
+    &:hover {
+        background-color: var(--action-ultra-dark);
+        color: var(--action-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--action-dark);
+        border-color: var(--action-dark);
+        color: var(--action-ultra-light);
+    }
+}
+
+.btn--neutral.btn--dark.btn--outline {
+    background-color: transparent;
+    color: var(--neutral-ultra-dark);
+    border-color: var(--neutral-ultra-dark);
+
+    &:hover {
+        background-color: var(--neutral-ultra-dark);
+        color: var(--neutral-ultra-light);
+    }
+
+    &:active {
+        background-color: var(--neutral-dark);
+        border-color: var(--neutral-dark);
+        color: var(--neutral-ultra-light);
+    }
+}
+
+// =============================================================================
+// Size Variants
+// =============================================================================
+
+.btn--xs {
+    --btn-padding-y: #{map-get($framework-config, "sizes", "xs") * 0.5}rem;
+    --btn-padding-x: #{map-get($framework-config, "sizes", "xs") * 1}rem;
+    --btn-font-size: #{map-get($framework-config, "sizes", "xs") * 0.875}rem;
+}
+
+.btn--s {
+    --btn-padding-y: #{map-get($framework-config, "sizes", "s") * 0.5}rem;
+    --btn-padding-x: #{map-get($framework-config, "sizes", "s") * 1}rem;
+    --btn-font-size: #{map-get($framework-config, "sizes", "s") * 0.875}rem;
+}
+
+.btn--m {
+    // Default size - no additional styles needed
+}
+
+.btn--l {
+    --btn-padding-y: #{map-get($framework-config, "sizes", "l") * 0.5}rem;
+    --btn-padding-x: #{map-get($framework-config, "sizes", "l") * 1}rem;
+    --btn-font-size: #{map-get($framework-config, "sizes", "l") * 0.875}rem;
+}
+
+.btn--xl {
+    --btn-padding-y: #{map-get($framework-config, "sizes", "xl") * 0.5}rem;
+    --btn-padding-x: #{map-get($framework-config, "sizes", "xl") * 1}rem;
+    --btn-font-size: #{map-get($framework-config, "sizes", "xl") * 0.875}rem;
+}
+
+.btn--xxl {
+    --btn-padding-y: #{map-get($framework-config, "sizes", "xxl") * 0.5}rem;
+    --btn-padding-x: #{map-get($framework-config, "sizes", "xxl") * 1}rem;
+    --btn-font-size: #{map-get($framework-config, "sizes", "xxl") * 0.875}rem;
+}

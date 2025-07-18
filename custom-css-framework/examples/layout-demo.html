@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout System Demo - Custom CSS Framework</title>
+    <link rel="stylesheet" href="../dist/framework.css">
+    <style>
+        body {
+            font-family: var(--font-primary);
+            line-height: var(--text-line-height);
+            margin: 0;
+            padding: var(--gutter);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .demo-section {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color-light);
+        }
+        
+        .demo-item {
+            background: var(--neutral-ultra-light);
+            padding: var(--space-m);
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid var(--border-color-light);
+        }
+        
+        .demo-card {
+            background: var(--white);
+            border: 1px solid var(--border-color-light);
+            border-radius: 8px;
+            padding: var(--space-l);
+            text-align: center;
+        }
+        
+        .sidebar-demo {
+            background: var(--primary-ultra-light);
+            padding: var(--space-m);
+            border-radius: 6px;
+        }
+        
+        .content-demo {
+            background: var(--secondary-ultra-light);
+            padding: var(--space-m);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text--h1 text--primary">Layout System Demo</h1>
+        <p class="text--l text--base-light">Comprehensive grid, flexbox, and layout utilities with responsive design.</p>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">Container System</h2>
+            <div class="container bg--neutral-ultra-light padding--l">
+                <p class="text--center">Default Container (.container)</p>
+                <p class="text--s text--center text--base-light">Max-width with automatic centering and responsive gutters</p>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">CSS Grid Utilities</h2>
+            
+            <h3 class="text--h3">Equal Column Grids</h3>
+            <div class="grid--2 margin-bottom--l">
+                <div class="demo-item">Grid Item 1</div>
+                <div class="demo-item">Grid Item 2</div>
+            </div>
+            
+            <div class="grid--3 margin-bottom--l">
+                <div class="demo-item">Grid Item 1</div>
+                <div class="demo-item">Grid Item 2</div>
+                <div class="demo-item">Grid Item 3</div>
+            </div>
+            
+            <div class="grid--4">
+                <div class="demo-item">Grid Item 1</div>
+                <div class="demo-item">Grid Item 2</div>
+                <div class="demo-item">Grid Item 3</div>
+                <div class="demo-item">Grid Item 4</div>
+            </div>
+            
+            <h3 class="text--h3">Unbalanced Grid Patterns</h3>
+            <div class="grid--2-1 margin-bottom--l">
+                <div class="demo-item">2fr width</div>
+                <div class="demo-item">1fr width</div>
+            </div>
+            
+            <div class="grid--1-2-1 margin-bottom--l">
+                <div class="demo-item">1fr</div>
+                <div class="demo-item">2fr</div>
+                <div class="demo-item">1fr</div>
+            </div>
+            
+            <h3 class="text--h3">Auto-Responsive Grids</h3>
+            <p class="text--s text--base-light">These grids automatically adjust column count based on available space:</p>
+            
+            <div class="grid--auto-3 margin-bottom--l">
+                <div class="demo-item">Auto Item 1</div>
+                <div class="demo-item">Auto Item 2</div>
+                <div class="demo-item">Auto Item 3</div>
+                <div class="demo-item">Auto Item 4</div>
+                <div class="demo-item">Auto Item 5</div>
+                <div class="demo-item">Auto Item 6</div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">Flexbox Utilities</h2>
+            
+            <h3 class="text--h3">Flex Direction & Alignment</h3>
+            <div class="flex flex--justify-between flex--items-center bg--neutral-ultra-light padding--l margin-bottom--l">
+                <div class="demo-item">Flex Start</div>
+                <div class="demo-item">Flex Center</div>
+                <div class="demo-item">Flex End</div>
+            </div>
+            
+            <div class="flex flex--col flex--items-center gap--m margin-bottom--l">
+                <div class="demo-item">Column Item 1</div>
+                <div class="demo-item">Column Item 2</div>
+                <div class="demo-item">Column Item 3</div>
+            </div>
+            
+            <h3 class="text--h3">Flex Item Sizing</h3>
+            <div class="flex gap--m">
+                <div class="flex--1 demo-item">flex--1 (grows)</div>
+                <div class="flex--2 demo-item">flex--2 (grows 2x)</div>
+                <div class="flex--none demo-item">flex--none (fixed)</div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">Layout Patterns</h2>
+            
+            <h3 class="text--h3">Sidebar + Content Layout</h3>
+            <div class="layout--sidebar-content margin-bottom--l">
+                <div class="sidebar-demo">
+                    <h4 class="text--h5 margin--0">Sidebar</h4>
+                    <p class="text--s margin-bottom--0">Fixed minimum width with flexible content area</p>
+                </div>
+                <div class="content-demo">
+                    <h4 class="text--h5 margin--0">Main Content</h4>
+                    <p class="text--s margin-bottom--0">This area grows to fill available space. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+            
+            <h3 class="text--h3">Three Column Layout</h3>
+            <div class="layout--three-column">
+                <div class="sidebar-demo">
+                    <h5 class="text--h6 margin--0">Left</h5>
+                </div>
+                <div class="content-demo">
+                    <h5 class="text--h6 margin--0">Center (Main)</h5>
+                </div>
+                <div class="sidebar-demo">
+                    <h5 class="text--h6 margin--0">Right</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">Card Grid Layouts</h2>
+            
+            <h3 class="text--h3">Product Grid</h3>
+            <div class="layout--product-grid">
+                <div class="demo-card">
+                    <h4 class="text--h5 margin-top--0">Product 1</h4>
+                    <p class="text--s text--base-light">Auto-responsive product grid with optimal card sizing</p>
+                </div>
+                <div class="demo-card">
+                    <h4 class="text--h5 margin-top--0">Product 2</h4>
+                    <p class="text--s text--base-light">Cards maintain consistent sizing and spacing</p>
+                </div>
+                <div class="demo-card">
+                    <h4 class="text--h5 margin-top--0">Product 3</h4>
+                    <p class="text--s text--base-light">Responsive behavior without media queries</p>
+                </div>
+                <div class="demo-card">
+                    <h4 class="text--h5 margin-top--0">Product 4</h4>
+                    <p class="text--s text--base-light">Built-in grid gap using contextual spacing</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">Aspect Ratios</h2>
+            <div class="grid--3 gap--m">
+                <div class="aspect--square bg--primary-ultra-light flex flex--items-center flex--justify-center">
+                    <span class="text--semibold text--primary-dark">Square (1:1)</span>
+                </div>
+                <div class="aspect--video bg--secondary-ultra-light flex flex--items-center flex--justify-center">
+                    <span class="text--semibold text--secondary-dark">Video (16:9)</span>
+                </div>
+                <div class="aspect--photo bg--accent-ultra-light flex flex--items-center flex--justify-center">
+                    <span class="text--semibold text--accent-dark">Photo (3:2)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">Width & Height Utilities</h2>
+            
+            <h3 class="text--h3">Width Percentages</h3>
+            <div class="margin-bottom--l">
+                <div class="width--25 bg--primary-trans-20 padding--s margin-bottom--s">25% width</div>
+                <div class="width--50 bg--secondary-trans-20 padding--s margin-bottom--s">50% width</div>
+                <div class="width--75 bg--accent-trans-20 padding--s margin-bottom--s">75% width</div>
+                <div class="width--full bg--success-trans-20 padding--s">100% width</div>
+            </div>
+            
+            <h3 class="text--h3">Special Width Values</h3>
+            <div class="flex gap--m flex--wrap">
+                <div class="width--min bg--neutral-ultra-light padding--s">min-content</div>
+                <div class="width--max bg--neutral-ultra-light padding--s">max-content width</div>
+                <div class="width--fit bg--neutral-ultra-light padding--s">fit-content</div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">Positioning Utilities</h2>
+            
+            <div class="relative bg--neutral-ultra-light padding--xl margin-bottom--l" style="height: 200px;">
+                <p class="text--s text--base-light margin--0">Relative Container</p>
+                <div class="absolute top--s right--s bg--primary text--white padding--s">
+                    Absolute positioned (top-right)
+                </div>
+                <div class="absolute bottom--s left--s bg--secondary text--white padding--s">
+                    Absolute positioned (bottom-left)
+                </div>
+                <div class="absolute top--center left--center bg--accent text--white padding--s translate--center">
+                    Perfectly centered
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2">Responsive Layout</h2>
+            <p class="text--s text--base-light">Resize your browser to see responsive behavior:</p>
+            
+            <div class="grid--1 tablet:grid--2 desktop:grid--3">
+                <div class="demo-card">
+                    <h4 class="text--h5 margin-top--0">Responsive Card 1</h4>
+                    <p class="text--s">1 column on mobile, 2 on tablet, 3 on desktop</p>
+                </div>
+                <div class="demo-card">
+                    <h4 class="text--h5 margin-top--0">Responsive Card 2</h4>
+                    <p class="text--s">Layout adapts automatically to screen size</p>
+                </div>
+                <div class="demo-card">
+                    <h4 class="text--h5 margin-top--0">Responsive Card 3</h4>
+                    <p class="text--s">No complex media queries needed</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="text--h2 text--success">✓ Layout System Complete!</h2>
+            <div class="bg--success-ultra-light padding--l border-radius--m">
+                <h3 class="text--h4 text--success-dark margin-top--0">Features Demonstrated:</h3>
+                <ul class="text--s text--success-dark">
+                    <li>✓ CSS Grid utilities (equal & unbalanced columns)</li>
+                    <li>✓ Auto-responsive grids without media queries</li>
+                    <li>✓ Flexbox utilities with alignment controls</li>
+                    <li>✓ Pre-built layout patterns (sidebar, three-column)</li>
+                    <li>✓ Container system with responsive gutters</li>
+                    <li>✓ Aspect ratio utilities</li>
+                    <li>✓ Width, height, and positioning utilities</li>
+                    <li>✓ Responsive layout utilities</li>
+                    <li>✓ All following ACSS double-dash syntax</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

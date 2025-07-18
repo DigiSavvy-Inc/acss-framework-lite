@@ -1,0 +1,210 @@
+// =============================================================================
+// Central Configuration
+// =============================================================================
+// This is the single source of truth for all framework values.
+// Override any of these values before importing the framework to customize.
+
+$framework-config: (
+    // ==========================================================================
+    // Core Settings
+    // ==========================================================================
+    // Base typography
+    "base-font-size": 16,
+    // Browser default, used for rem calculations
+    "base-line-height": 1.25,
+
+    // Default line height for body text
+    // Content width
+    "content-width": 1140px,
+    // Maximum content width
+    "content-width-wide": 1340px,
+
+    // Wide content variant
+    // ==========================================================================
+    // Mathematical Scales
+    // ==========================================================================
+    // Type scale ratio (1.250 = Major Third)
+    "type-scale": 1.25,
+
+    // Spacing scale ratio (1.618 = Golden Ratio)
+    "space-scale": 1.618,
+
+    // ==========================================================================
+    // Brand Colors
+    // ==========================================================================
+    // Only define base colors - variations are auto-generated
+    "colors": (
+            "primary": #0066cc,
+            // Primary brand color
+            "secondary": #e2e8f0,
+            // Secondary brand color (swapped with neutral)
+            "accent": #D7AFBE,
+            // Accent color for highlights (new pink color)
+            "action": #ff6b6b,
+            // Action color (was accent)
+            "base": #4a5568,
+            // Base text color
+            "shade": #1a202c,
+            // Dark shade
+            "neutral": #6c757d,
+            // Light neutral (swapped with secondary)
+            "white": #ffffff,
+            // Pure white
+            "black": #000000,
+            // Pure black
+        ),
+
+    // Contextual colors
+    "contextual-colors": (
+            "success": #10b981,
+            // Green
+            "warning": #f59e0b,
+            // Amber
+            "danger": #ef4444,
+            // Red
+            "info": #3b82f6,
+            // Blue
+        ),
+
+    // ==========================================================================
+    // Breakpoints
+    // ==========================================================================
+    "breakpoints": (
+            "mobile": 480px,
+            "tablet": 768px,
+            "desktop": 1024px,
+            "wide": 1440px,
+        ),
+
+    // ==========================================================================
+    // T-Shirt Size Multipliers
+    // ==========================================================================
+    // Used for consistent sizing across all systems
+    "sizes": (
+            "xs": 0.5,
+            // Extra small (0.5rem = 8px)
+            "s": 0.75,
+            // Small (0.75rem = 12px)
+            "m": 1,
+            // Medium (1rem = 16px - base)
+            "l": 1.5,
+            // Large (1.5rem = 24px)
+            "xl": 2.25,
+            // Extra large (2.25rem = 36px)
+            "xxl": 3.5,
+            // Double extra large (3.5rem = 56px)
+        ),
+
+    // ==========================================================================
+    // Typography Settings
+    // ==========================================================================
+    "font-families": (
+            "primary": (
+                system-ui,
+                -apple-system,
+                "Segoe UI",
+                Roboto,
+                sans-serif,
+            ),
+            "secondary": (
+                Georgia,
+                "Times New Roman",
+                serif,
+            ),
+            "mono": (
+                "SF Mono",
+                Monaco,
+                "Cascadia Code",
+                monospace,
+            ),
+        ),
+
+    "font-weights": (
+        "light": 300,
+        "normal": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+    ),
+
+    // Heading scale positions (how many steps up from base text size)
+    "heading-scale": (
+            "h6": 0,
+            // Same as base
+            "h5": 1.5,
+            // One and a half steps up
+            "h4": 3,
+            // Three steps up
+            "h3": 4.5,
+            // Four and a half steps up
+            "h2": 6,
+            // Six steps up
+            "h1": 7,
+            // Eight steps up - significantly larger
+        ),
+
+    // ==========================================================================
+    // Spacing Settings
+    // ==========================================================================
+    "base-spacing": 1rem,
+    // Base spacing unit
+    "grid-gap-base": 1.5rem,
+    // Base grid gap
+    "content-gap-base": 1.25rem,
+    // Base content gap
+    "container-gap-base": 2.5rem,
+
+    // Base container gap
+    // ==========================================================================
+    // Effects
+    // ==========================================================================
+    "border-radius": (
+            "none": 0,
+            "s": 0.25rem,
+            "m": 0.5rem,
+            "l": 0.75rem,
+            "xl": 1rem,
+            "full": 9999px,
+        ),
+
+    "shadows": (
+        "s": (
+            0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24),
+        ),
+        "m": (
+            0 3px 6px rgba(0, 0, 0, 0.15),
+            0 2px 4px rgba(0, 0, 0, 0.12),
+        ),
+        "l": (
+            0 10px 20px rgba(0, 0, 0, 0.15),
+            0 3px 6px rgba(0, 0, 0, 0.1),
+        ),
+        "xl": (
+            0 15px 25px rgba(0, 0, 0, 0.15),
+            0 5px 10px rgba(0, 0, 0, 0.05),
+        ),
+    ),
+
+    "transitions": (
+        "fast": 150ms,
+        "base": 250ms,
+        "slow": 350ms,
+    ),
+
+    // ==========================================================================
+    // Z-Index Scale
+    // ==========================================================================
+    "z-index": (
+            "below": -1,
+            "base": 0,
+            "above": 1,
+            "dropdown": 1000,
+            "sticky": 1020,
+            "fixed": 1030,
+            "modal-backdrop": 1040,
+            "modal": 1050,
+            "popover": 1060,
+            "tooltip": 1070,
+        )
+) !default;

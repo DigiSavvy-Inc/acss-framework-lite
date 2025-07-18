@@ -1,0 +1,29 @@
+{
+  "name": "custom-acss-framework-lite",
+  "version": "0.1.0",
+  "description": "A lightweight, variable-driven CSS framework inspired by Automatic.css philosophy",
+  "main": "dist/framework.css",
+  "scripts": {
+    "build": "npm run build:expanded && npm run build:compressed && npm run build:vars && npm run build:utilities",
+    "build:expanded": "sass src/main.scss dist/framework.css --style=expanded",
+    "build:compressed": "sass src/main.scss dist/framework.min.css --style=compressed",
+    "build:vars": "sass src/foundation/_variables-export.scss dist/framework-vars.css --style=compressed",
+    "build:utilities": "sass src/utilities-export.scss dist/framework-utilities.css --style=compressed",
+    "watch": "sass src/main.scss dist/framework.css --watch --style=expanded",
+    "dev": "npm run watch"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "scss",
+    "sass",
+    "utilities",
+    "variables",
+    "responsive"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}

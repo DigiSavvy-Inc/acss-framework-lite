@@ -1,0 +1,538 @@
+// =============================================================================
+// Layout Utilities
+// =============================================================================
+// Utility classes for grid, flexbox, and layout patterns
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// =============================================================================
+// Container Utilities
+// =============================================================================
+
+// Base container
+.container {
+  @include container;
+}
+
+// Container size variants
+@each $size in map.keys(config('sizes')) {
+  .container--#{$size} {
+    @include container(var(--content-width-#{$size}));
+  }
+}
+
+// Responsive containers
+@each $bp-name, $bp-value in config('breakpoints') {
+  @media (min-width: $bp-value) {
+    .#{$bp-name}\:container {
+      @include container;
+    }
+  }
+}
+
+// =============================================================================
+// CSS Grid Utilities
+// =============================================================================
+
+// Grid container
+.grid {
+  display: grid !important;
+  gap: var(--grid-gap) !important;
+}
+
+// Equal column grids (1-12)
+@for $i from 1 through 12 {
+  .grid--#{$i} {
+    display: grid !important;
+    grid-template-columns: var(--grid-#{$i}) !important;
+    gap: var(--grid-gap) !important;
+  }
+}
+
+// Unbalanced grid patterns
+$grid-patterns: (
+  '1-2': var(--grid-1-2),
+  '2-1': var(--grid-2-1),
+  '1-3': var(--grid-1-3),
+  '3-1': var(--grid-3-1),
+  '2-3': var(--grid-2-3),
+  '3-2': var(--grid-3-2),
+  '1-1-2': var(--grid-1-1-2),
+  '2-1-1': var(--grid-2-1-1),
+  '1-2-1': var(--grid-1-2-1),
+);
+
+@each $pattern, $template in $grid-patterns {
+  .grid--#{$pattern} {
+    display: grid !important;
+    grid-template-columns: #{$template} !important;
+    gap: var(--grid-gap) !important;
+  }
+}
+
+// Auto-responsive grids
+@for $i from 1 through 6 {
+  .grid--auto-#{$i} {
+    display: grid !important;
+    grid-template-columns: var(--grid-auto-#{$i}) !important;
+    gap: var(--grid-gap) !important;
+  }
+}
+
+// Auto grids with size variants
+@each $size in ('xs', 's', 'm', 'l', 'xl') {
+  .grid--auto-#{$size} {
+    display: grid !important;
+    grid-template-columns: var(--grid-auto-#{$size}) !important;
+    gap: var(--grid-gap) !important;
+  }
+}
+
+// Grid alignment utilities
+.grid--align-start {
+  align-items: start !important;
+}
+
+.grid--align-center {
+  align-items: center !important;
+}
+
+.grid--align-end {
+  align-items: end !important;
+}
+
+.grid--align-stretch {
+  align-items: stretch !important;
+}
+
+.grid--justify-start {
+  justify-items: start !important;
+}
+
+.grid--justify-center {
+  justify-items: center !important;
+}
+
+.grid--justify-end {
+  justify-items: end !important;
+}
+
+.grid--justify-stretch {
+  justify-items: stretch !important;
+}
+
+// Grid content alignment
+.grid--content-start {
+  align-content: start !important;
+  justify-content: start !important;
+}
+
+.grid--content-center {
+  align-content: center !important;
+  justify-content: center !important;
+}
+
+.grid--content-end {
+  align-content: end !important;
+  justify-content: end !important;
+}
+
+.grid--content-between {
+  align-content: space-between !important;
+  justify-content: space-between !important;
+}
+
+// =============================================================================
+// Flexbox Utilities
+// =============================================================================
+
+// Flex container
+.flex {
+  display: flex !important;
+}
+
+.inline-flex {
+  display: inline-flex !important;
+}
+
+// Flex direction
+.flex--row {
+  flex-direction: row !important;
+}
+
+.flex--row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+.flex--col {
+  flex-direction: column !important;
+}
+
+.flex--col-reverse {
+  flex-direction: column-reverse !important;
+}
+
+// Flex wrap
+.flex--wrap {
+  flex-wrap: wrap !important;
+}
+
+.flex--nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.flex--wrap-reverse {
+  flex-wrap: wrap-reverse !important;
+}
+
+// Justify content
+.flex--justify-start {
+  justify-content: flex-start !important;
+}
+
+.flex--justify-center {
+  justify-content: center !important;
+}
+
+.flex--justify-end {
+  justify-content: flex-end !important;
+}
+
+.flex--justify-between {
+  justify-content: space-between !important;
+}
+
+.flex--justify-around {
+  justify-content: space-around !important;
+}
+
+.flex--justify-evenly {
+  justify-content: space-evenly !important;
+}
+
+// Align items
+.flex--items-start {
+  align-items: flex-start !important;
+}
+
+.flex--items-center {
+  align-items: center !important;
+}
+
+.flex--items-end {
+  align-items: flex-end !important;
+}
+
+.flex--items-baseline {
+  align-items: baseline !important;
+}
+
+.flex--items-stretch {
+  align-items: stretch !important;
+}
+
+// Align content
+.flex--content-start {
+  align-content: flex-start !important;
+}
+
+.flex--content-center {
+  align-content: center !important;
+}
+
+.flex--content-end {
+  align-content: flex-end !important;
+}
+
+.flex--content-between {
+  align-content: space-between !important;
+}
+
+.flex--content-around {
+  align-content: space-around !important;
+}
+
+.flex--content-evenly {
+  align-content: space-evenly !important;
+}
+
+// Flex item utilities
+.flex--1 {
+  flex: 1 1 0% !important;
+}
+
+.flex--2 {
+  flex: 2 2 0% !important;
+}
+
+.flex--3 {
+  flex: 3 3 0% !important;
+}
+
+.flex--auto {
+  flex: 1 1 auto !important;
+}
+
+.flex--initial {
+  flex: 0 1 auto !important;
+}
+
+.flex--none {
+  flex: none !important;
+}
+
+// Align self
+.self--start {
+  align-self: flex-start !important;
+}
+
+.self--center {
+  align-self: center !important;
+}
+
+.self--end {
+  align-self: flex-end !important;
+}
+
+.self--stretch {
+  align-self: stretch !important;
+}
+
+.self--baseline {
+  align-self: baseline !important;
+}
+
+// =============================================================================
+// Width Utilities
+// =============================================================================
+
+// T-shirt sizing for widths
+@each $size in map.keys(config('sizes')) {
+  .width--#{$size} {
+    width: var(--space-#{$size}) !important;
+  }
+}
+
+// Percentage widths
+@for $i from 0 through 100 {
+  @if $i % 5 == 0 or $i == 33 or $i == 66 {
+    .width--#{$i} {
+      width: percentage($i * 0.01) !important;
+    }
+  }
+}
+
+// Special width utilities
+.width--full {
+  width: 100% !important;
+}
+
+.width--screen {
+  width: 100vw !important;
+}
+
+.width--min {
+  width: min-content !important;
+}
+
+.width--max {
+  width: max-content !important;
+}
+
+.width--fit {
+  width: fit-content !important;
+}
+
+// Min/Max widths
+.min-width--0 {
+  min-width: 0 !important;
+}
+
+.min-width--full {
+  min-width: 100% !important;
+}
+
+.max-width--none {
+  max-width: none !important;
+}
+
+@each $size in map.keys(config('sizes')) {
+  .max-width--#{$size} {
+    max-width: var(--content-width-#{$size}) !important;
+  }
+}
+
+// =============================================================================
+// Height Utilities
+// =============================================================================
+
+// T-shirt sizing for heights
+@each $size in map.keys(config('sizes')) {
+  .height--#{$size} {
+    height: var(--space-#{$size}) !important;
+  }
+}
+
+// Percentage heights
+@for $i from 0 through 100 {
+  @if $i % 25 == 0 {
+    .height--#{$i} {
+      height: percentage($i * 0.01) !important;
+    }
+  }
+}
+
+// Special height utilities
+.height--full {
+  height: 100% !important;
+}
+
+.height--screen {
+  height: 100vh !important;
+}
+
+.height--min {
+  height: min-content !important;
+}
+
+.height--max {
+  height: max-content !important;
+}
+
+.height--fit {
+  height: fit-content !important;
+}
+
+// Min/Max heights
+.min-height--0 {
+  min-height: 0 !important;
+}
+
+.min-height--full {
+  min-height: 100% !important;
+}
+
+.min-height--screen {
+  min-height: 100vh !important;
+}
+
+// =============================================================================
+// Aspect Ratio Utilities
+// =============================================================================
+
+.aspect--square {
+  aspect-ratio: var(--aspect-square) !important;
+}
+
+.aspect--video {
+  aspect-ratio: var(--aspect-video) !important;
+}
+
+.aspect--video-4-3 {
+  aspect-ratio: var(--aspect-video-4-3) !important;
+}
+
+.aspect--photo {
+  aspect-ratio: var(--aspect-photo) !important;
+}
+
+.aspect--portrait {
+  aspect-ratio: var(--aspect-portrait) !important;
+}
+
+.aspect--golden {
+  aspect-ratio: var(--aspect-golden) !important;
+}
+
+.aspect--wide {
+  aspect-ratio: var(--aspect-wide) !important;
+}
+
+// =============================================================================
+// Layout Pattern Utilities
+// =============================================================================
+
+.layout--sidebar-content {
+  display: grid !important;
+  grid-template-columns: var(--layout-sidebar-content) !important;
+  gap: var(--grid-gap) !important;
+}
+
+.layout--content-sidebar {
+  display: grid !important;
+  grid-template-columns: var(--layout-content-sidebar) !important;
+  gap: var(--grid-gap) !important;
+}
+
+.layout--three-column {
+  display: grid !important;
+  grid-template-columns: var(--layout-three-column) !important;
+  gap: var(--grid-gap) !important;
+}
+
+.layout--holy-grail {
+  display: grid !important;
+  grid-template-columns: var(--layout-holy-grail) !important;
+  gap: var(--grid-gap) !important;
+}
+
+.layout--card-grid {
+  display: grid !important;
+  grid-template-columns: var(--layout-card-grid) !important;
+  gap: var(--grid-gap) !important;
+}
+
+.layout--product-grid {
+  display: grid !important;
+  grid-template-columns: var(--layout-product-grid) !important;
+  gap: var(--grid-gap) !important;
+}
+
+.layout--gallery-grid {
+  display: grid !important;
+  grid-template-columns: var(--layout-gallery-grid) !important;
+  gap: var(--grid-gap) !important;
+}
+
+// =============================================================================
+// Responsive Layout Utilities
+// =============================================================================
+
+@each $bp-name, $bp-value in config('breakpoints') {
+  @media (min-width: $bp-value) {
+    // Grid
+    @for $i from 1 through 4 {
+      .#{$bp-name}\:grid--#{$i} {
+        grid-template-columns: var(--grid-#{$i}) !important;
+      }
+    }
+    
+    .#{$bp-name}\:grid--auto {
+      grid-template-columns: var(--grid-auto-m) !important;
+    }
+    
+    // Flex
+    .#{$bp-name}\:flex {
+      display: flex !important;
+    }
+    
+    .#{$bp-name}\:flex--col {
+      flex-direction: column !important;
+    }
+    
+    .#{$bp-name}\:flex--row {
+      flex-direction: row !important;
+    }
+    
+    // Width
+    .#{$bp-name}\:width--full {
+      width: 100% !important;
+    }
+    
+    .#{$bp-name}\:width--auto {
+      width: auto !important;
+    }
+  }
+}

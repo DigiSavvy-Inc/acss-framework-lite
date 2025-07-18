@@ -1,0 +1,194 @@
+// =============================================================================
+// Display Utilities
+// =============================================================================
+// Utility classes for display, visibility, and positioning
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+
+// =============================================================================
+// Display Utilities
+// =============================================================================
+
+.display--block {
+  display: block !important;
+}
+
+.display--inline {
+  display: inline !important;
+}
+
+.display--inline-block {
+  display: inline-block !important;
+}
+
+.display--flex {
+  display: flex !important;
+}
+
+.display--inline-flex {
+  display: inline-flex !important;
+}
+
+.display--grid {
+  display: grid !important;
+}
+
+.display--inline-grid {
+  display: inline-grid !important;
+}
+
+.display--table {
+  display: table !important;
+}
+
+.display--table-row {
+  display: table-row !important;
+}
+
+.display--table-cell {
+  display: table-cell !important;
+}
+
+.display--none {
+  display: none !important;
+}
+
+.display--contents {
+  display: contents !important;
+}
+
+// =============================================================================
+// Visibility Utilities
+// =============================================================================
+
+.visible {
+  visibility: visible !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.opacity--0 {
+  opacity: 0 !important;
+}
+
+.opacity--25 {
+  opacity: 0.25 !important;
+}
+
+.opacity--50 {
+  opacity: 0.5 !important;
+}
+
+.opacity--75 {
+  opacity: 0.75 !important;
+}
+
+.opacity--100 {
+  opacity: 1 !important;
+}
+
+// =============================================================================
+// Overflow Utilities
+// =============================================================================
+
+.overflow--auto {
+  overflow: auto !important;
+}
+
+.overflow--hidden {
+  overflow: hidden !important;
+}
+
+.overflow--visible {
+  overflow: visible !important;
+}
+
+.overflow--scroll {
+  overflow: scroll !important;
+}
+
+.overflow-x--auto {
+  overflow-x: auto !important;
+}
+
+.overflow-x--hidden {
+  overflow-x: hidden !important;
+}
+
+.overflow-x--scroll {
+  overflow-x: scroll !important;
+}
+
+.overflow-y--auto {
+  overflow-y: auto !important;
+}
+
+.overflow-y--hidden {
+  overflow-y: hidden !important;
+}
+
+.overflow-y--scroll {
+  overflow-y: scroll !important;
+}
+
+// =============================================================================
+// Responsive Display Utilities
+// =============================================================================
+
+@each $bp-name, $bp-value in config('breakpoints') {
+  @media (min-width: $bp-value) {
+    .#{$bp-name}\:display--block {
+      display: block !important;
+    }
+    
+    .#{$bp-name}\:display--flex {
+      display: flex !important;
+    }
+    
+    .#{$bp-name}\:display--grid {
+      display: grid !important;
+    }
+    
+    .#{$bp-name}\:display--none {
+      display: none !important;
+    }
+    
+    .#{$bp-name}\:display--inline {
+      display: inline !important;
+    }
+    
+    .#{$bp-name}\:display--inline-block {
+      display: inline-block !important;
+    }
+  }
+}
+
+// =============================================================================
+// Screen Reader Only
+// =============================================================================
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+}
+
+.not-sr-only {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}

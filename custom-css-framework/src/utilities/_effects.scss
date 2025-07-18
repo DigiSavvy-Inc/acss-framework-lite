@@ -1,0 +1,443 @@
+// =============================================================================
+// Effects Utilities
+// =============================================================================
+// Utility classes for shadows, borders, transitions, and visual effects
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+
+// =============================================================================
+// Box Shadow Utilities
+// =============================================================================
+
+.shadow--none {
+  box-shadow: var(--shadow-none) !important;
+}
+
+.shadow--s {
+  box-shadow: var(--shadow-s) !important;
+}
+
+.shadow--m {
+  box-shadow: var(--shadow-m) !important;
+}
+
+.shadow--l {
+  box-shadow: var(--shadow-l) !important;
+}
+
+.shadow--xl {
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.shadow--inner {
+  box-shadow: var(--shadow-inner) !important;
+}
+
+.shadow--outline {
+  box-shadow: var(--shadow-outline) !important;
+}
+
+// Colored shadows
+.shadow--primary {
+  box-shadow: var(--shadow-primary) !important;
+}
+
+.shadow--secondary {
+  box-shadow: var(--shadow-secondary) !important;
+}
+
+.shadow--accent {
+  box-shadow: var(--shadow-accent) !important;
+}
+
+.shadow--success {
+  box-shadow: var(--shadow-success) !important;
+}
+
+.shadow--warning {
+  box-shadow: var(--shadow-warning) !important;
+}
+
+.shadow--danger {
+  box-shadow: var(--shadow-danger) !important;
+}
+
+// =============================================================================
+// Border Radius Utilities
+// =============================================================================
+
+.radius--none {
+  border-radius: var(--radius-none) !important;
+}
+
+.radius--s {
+  border-radius: var(--radius-s) !important;
+}
+
+.radius--m {
+  border-radius: var(--radius-m) !important;
+}
+
+.radius--l {
+  border-radius: var(--radius-l) !important;
+}
+
+.radius--xl {
+  border-radius: var(--radius-xl) !important;
+}
+
+.radius--full {
+  border-radius: var(--radius-full) !important;
+}
+
+// Directional border radius
+.radius-top--s {
+  border-top-left-radius: var(--radius-s) !important;
+  border-top-right-radius: var(--radius-s) !important;
+}
+
+.radius-top--m {
+  border-top-left-radius: var(--radius-m) !important;
+  border-top-right-radius: var(--radius-m) !important;
+}
+
+.radius-top--l {
+  border-top-left-radius: var(--radius-l) !important;
+  border-top-right-radius: var(--radius-l) !important;
+}
+
+.radius-bottom--s {
+  border-bottom-left-radius: var(--radius-s) !important;
+  border-bottom-right-radius: var(--radius-s) !important;
+}
+
+.radius-bottom--m {
+  border-bottom-left-radius: var(--radius-m) !important;
+  border-bottom-right-radius: var(--radius-m) !important;
+}
+
+.radius-bottom--l {
+  border-bottom-left-radius: var(--radius-l) !important;
+  border-bottom-right-radius: var(--radius-l) !important;
+}
+
+// =============================================================================
+// Border Width Utilities
+// =============================================================================
+
+.border--0 {
+  border-width: var(--border-width-0) !important;
+  border-style: solid !important;
+}
+
+.border--1 {
+  border-width: var(--border-width-1) !important;
+  border-style: solid !important;
+}
+
+.border--2 {
+  border-width: var(--border-width-2) !important;
+  border-style: solid !important;
+}
+
+.border--4 {
+  border-width: var(--border-width-4) !important;
+  border-style: solid !important;
+}
+
+.border--8 {
+  border-width: var(--border-width-8) !important;
+  border-style: solid !important;
+}
+
+// Directional borders
+.border-top--1 {
+  border-top-width: var(--border-width-1) !important;
+  border-top-style: solid !important;
+}
+
+.border-right--1 {
+  border-right-width: var(--border-width-1) !important;
+  border-right-style: solid !important;
+}
+
+.border-bottom--1 {
+  border-bottom-width: var(--border-width-1) !important;
+  border-bottom-style: solid !important;
+}
+
+.border-left--1 {
+  border-left-width: var(--border-width-1) !important;
+  border-left-style: solid !important;
+}
+
+// =============================================================================
+// Border Style Utilities
+// =============================================================================
+
+.border--solid {
+  border-style: solid !important;
+}
+
+.border--dashed {
+  border-style: dashed !important;
+}
+
+.border--dotted {
+  border-style: dotted !important;
+}
+
+.border--double {
+  border-style: double !important;
+}
+
+.border--none {
+  border-style: none !important;
+}
+
+// =============================================================================
+// Transition Utilities
+// =============================================================================
+
+.transition {
+  transition: var(--transition) !important;
+}
+
+.transition--none {
+  transition: none !important;
+}
+
+.transition--colors {
+  transition: var(--transition-colors) !important;
+}
+
+.transition--opacity {
+  transition: var(--transition-opacity) !important;
+}
+
+.transition--shadow {
+  transition: var(--transition-shadow) !important;
+}
+
+.transition--transform {
+  transition: var(--transition-transform) !important;
+}
+
+.transition--fast {
+  transition-duration: var(--transition-fast) !important;
+}
+
+.transition--slow {
+  transition-duration: var(--transition-slow) !important;
+}
+
+// =============================================================================
+// Filter Utilities
+// =============================================================================
+
+.filter--blur-sm {
+  filter: var(--filter-blur-sm) !important;
+}
+
+.filter--blur-md {
+  filter: var(--filter-blur-md) !important;
+}
+
+.filter--blur-lg {
+  filter: var(--filter-blur-lg) !important;
+}
+
+.filter--brightness-50 {
+  filter: var(--filter-brightness-50) !important;
+}
+
+.filter--brightness-75 {
+  filter: var(--filter-brightness-75) !important;
+}
+
+.filter--brightness-125 {
+  filter: var(--filter-brightness-125) !important;
+}
+
+.filter--brightness-150 {
+  filter: var(--filter-brightness-150) !important;
+}
+
+.filter--grayscale {
+  filter: var(--filter-grayscale) !important;
+}
+
+.filter--sepia {
+  filter: var(--filter-sepia) !important;
+}
+
+.filter--none {
+  filter: none !important;
+}
+
+// =============================================================================
+// Backdrop Utilities
+// =============================================================================
+
+.backdrop--blur-sm {
+  backdrop-filter: var(--backdrop-blur-sm) !important;
+}
+
+.backdrop--blur-md {
+  backdrop-filter: var(--backdrop-blur-md) !important;
+}
+
+.backdrop--blur-lg {
+  backdrop-filter: var(--backdrop-blur-lg) !important;
+}
+
+.backdrop--blur-xl {
+  backdrop-filter: var(--backdrop-blur-xl) !important;
+}
+
+// =============================================================================
+// Gradient Utilities
+// =============================================================================
+
+.gradient--primary {
+  background: var(--gradient-primary) !important;
+}
+
+.gradient--secondary {
+  background: var(--gradient-secondary) !important;
+}
+
+.gradient--accent {
+  background: var(--gradient-accent) !important;
+}
+
+.gradient--subtle-light {
+  background: var(--gradient-subtle-light) !important;
+}
+
+.gradient--subtle-dark {
+  background: var(--gradient-subtle-dark) !important;
+}
+
+// =============================================================================
+// Interactive States
+// =============================================================================
+
+// Hover effects
+.hover\:shadow--s:hover {
+  box-shadow: var(--shadow-s) !important;
+}
+
+.hover\:shadow--m:hover {
+  box-shadow: var(--shadow-m) !important;
+}
+
+.hover\:shadow--l:hover {
+  box-shadow: var(--shadow-l) !important;
+}
+
+.hover\:shadow--xl:hover {
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.hover\:scale--105:hover {
+  transform: scale(1.05) !important;
+}
+
+.hover\:scale--110:hover {
+  transform: scale(1.1) !important;
+}
+
+.hover\:translate-y--1:hover {
+  transform: translateY(-0.25rem) !important;
+}
+
+.hover\:translate-y--2:hover {
+  transform: translateY(-0.5rem) !important;
+}
+
+// Focus effects
+.focus\:shadow--outline:focus {
+  box-shadow: var(--shadow-outline) !important;
+  outline: none !important;
+}
+
+.focus\:ring:focus {
+  box-shadow: var(--focus-ring) !important;
+  outline: none !important;
+}
+
+// =============================================================================
+// Animation Utilities
+// =============================================================================
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate--spin {
+  animation: spin var(--animate-spin) linear infinite !important;
+}
+
+.animate--ping {
+  animation: ping var(--animate-ping) cubic-bezier(0, 0, 0.2, 1) infinite !important;
+}
+
+.animate--pulse {
+  animation: pulse var(--animate-pulse) cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+.animate--bounce {
+  animation: bounce var(--animate-bounce) infinite !important;
+}
+
+// =============================================================================
+// Responsive Effects Utilities
+// =============================================================================
+
+@each $bp-name, $bp-value in config('breakpoints') {
+  @media (min-width: $bp-value) {
+    .#{$bp-name}\:shadow--s {
+      box-shadow: var(--shadow-s) !important;
+    }
+    
+    .#{$bp-name}\:shadow--m {
+      box-shadow: var(--shadow-m) !important;
+    }
+    
+    .#{$bp-name}\:shadow--l {
+      box-shadow: var(--shadow-l) !important;
+    }
+    
+    .#{$bp-name}\:shadow--none {
+      box-shadow: var(--shadow-none) !important;
+    }
+  }
+}

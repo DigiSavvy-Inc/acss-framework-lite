@@ -1,0 +1,140 @@
+// =============================================================================
+// Spacing System
+// =============================================================================
+// Generates comprehensive spacing variables with contextual gaps
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+
+// =============================================================================
+// Spacing Variable Generation
+// =============================================================================
+
+:root {
+  // ==========================================================================
+  // Base Spacing Scale - T-Shirt Sizing
+  // ==========================================================================
+  
+  $spacing-scale: generate-spacing-scale();
+  
+  @each $size, $value in $spacing-scale {
+    // Component spacing (for padding, margins, gaps)
+    --space-#{$size}: #{$value};
+    
+    // Fluid responsive spacing
+    $min: strip-unit($value) * 0.75;
+    $max: strip-unit($value) * 1.25;
+    --space-#{$size}-fluid: #{fluid($min * 16, $max * 16)};
+  }
+  
+  // ==========================================================================
+  // Section Spacing
+  // ==========================================================================
+  // Larger spacing values for section padding
+  
+  @each $size, $value in $spacing-scale {
+    // Section spacing is 4x component spacing
+    --section-space-#{$size}: calc(#{$value} * 4);
+    
+    // Fluid section spacing
+    $min: strip-unit($value) * 3;
+    $max: strip-unit($value) * 5;
+    --section-space-#{$size}-fluid: #{fluid($min * 16, $max * 16)};
+  }
+  
+  // ==========================================================================
+  // Contextual Gaps
+  // ==========================================================================
+  // Purpose-built spacing for specific contexts
+  
+  // Content gap - spacing between content elements (paragraphs, headings, etc.)
+  --content-gap: var(--space-m);
+  --content-gap-xs: var(--space-xs);
+  --content-gap-s: var(--space-s);
+  --content-gap-m: var(--space-m);
+  --content-gap-l: var(--space-l);
+  --content-gap-xl: var(--space-xl);
+  --content-gap-xxl: var(--space-xxl);
+  
+  // Grid gap - spacing between grid items
+  --grid-gap: calc(var(--space-m) * 1.5);
+  --grid-gap-xs: calc(var(--space-xs) * 1.5);
+  --grid-gap-s: calc(var(--space-s) * 1.5);
+  --grid-gap-m: calc(var(--space-m) * 1.5);
+  --grid-gap-l: calc(var(--space-l) * 1.5);
+  --grid-gap-xl: calc(var(--space-xl) * 1.5);
+  --grid-gap-xxl: calc(var(--space-xxl) * 1.5);
+  
+  // Container gap - spacing between major containers in sections
+  --container-gap: calc(var(--space-m) * 2.5);
+  --container-gap-xs: calc(var(--space-xs) * 2.5);
+  --container-gap-s: calc(var(--space-s) * 2.5);
+  --container-gap-m: calc(var(--space-m) * 2.5);
+  --container-gap-l: calc(var(--space-l) * 2.5);
+  --container-gap-xl: calc(var(--space-xl) * 2.5);
+  --container-gap-xxl: calc(var(--space-xxl) * 2.5);
+  
+  // ==========================================================================
+  // Smart Spacing Relationships
+  // ==========================================================================
+  
+  // Based on golden ratio for harmonious spacing
+  --space-ratio: 1.618;
+  
+  // Automatic spacing relationships
+  --space-related-xs: calc(var(--space-xs) * var(--space-ratio));
+  --space-related-s: calc(var(--space-s) * var(--space-ratio));
+  --space-related-m: calc(var(--space-m) * var(--space-ratio));
+  --space-related-l: calc(var(--space-l) * var(--space-ratio));
+  --space-related-xl: calc(var(--space-xl) * var(--space-ratio));
+  
+  // ==========================================================================
+  // Negative Spacing
+  // ==========================================================================
+  // For overlapping and pull techniques
+  
+  @each $size, $value in $spacing-scale {
+    --space-#{$size}-negative: calc(#{$value} * -1);
+  }
+  
+  // ==========================================================================
+  // Special Spacing Values
+  // ==========================================================================
+  
+  // Zero spacing
+  --space-0: 0;
+  --space-none: 0;
+  
+  // Pixel-perfect spacing
+  --space-px: 1px;
+  --space-0-5: 0.125rem; // 2px
+  --space-1: 0.25rem;     // 4px
+  --space-1-5: 0.375rem; // 6px
+  --space-2: 0.5rem;      // 8px
+  --space-2-5: 0.625rem; // 10px
+  --space-3: 0.75rem;     // 12px
+  --space-3-5: 0.875rem; // 14px
+  --space-4: 1rem;        // 16px
+  
+  // ==========================================================================
+  // Directional Spacing Helpers
+  // ==========================================================================
+  
+  // Inline spacing (left/right in LTR)
+  --space-inline: var(--space-m);
+  --space-inline-xs: var(--space-xs);
+  --space-inline-s: var(--space-s);
+  --space-inline-m: var(--space-m);
+  --space-inline-l: var(--space-l);
+  --space-inline-xl: var(--space-xl);
+  --space-inline-xxl: var(--space-xxl);
+  
+  // Block spacing (top/bottom)
+  --space-block: var(--space-m);
+  --space-block-xs: var(--space-xs);
+  --space-block-s: var(--space-s);
+  --space-block-m: var(--space-m);
+  --space-block-l: var(--space-l);
+  --space-block-xl: var(--space-xl);
+  --space-block-xxl: var(--space-xxl);
+}

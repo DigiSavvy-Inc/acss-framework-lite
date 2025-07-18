@@ -1,0 +1,412 @@
+// =============================================================================
+// Badge and Tag Components
+// =============================================================================
+// Small status indicators and content tags
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// =============================================================================
+// Base Badge Component
+// =============================================================================
+
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  font-size: 0.75em;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  text-align: center;
+  align-content: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: var(--border-radius-s);
+  transition: var(--transition-base);
+  
+  // Empty badge should be hidden
+  &:empty {
+    display: none;
+  }
+  
+  // Badge as link
+  &.badge--link {
+    text-decoration: none;
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--focus-color);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// =============================================================================
+// Badge Color Variants - Using ACSS Color System
+// =============================================================================
+
+// Primary Badge
+.badge--primary {
+  background-color: var(--primary);
+  color: var(--white);
+  
+  &.badge--link:hover {
+    background-color: var(--primary-dark);
+  }
+}
+
+// Secondary Badge
+.badge--secondary {
+  background-color: var(--secondary);
+  color: var(--white);
+  
+  &.badge--link:hover {
+    background-color: var(--secondary-dark);
+  }
+}
+
+// Success Badge
+.badge--success {
+  background-color: var(--success);
+  color: var(--white);
+  
+  &.badge--link:hover {
+    background-color: var(--success-dark);
+  }
+}
+
+// Warning Badge
+.badge--warning {
+  background-color: var(--warning);
+  color: var(--white);
+  
+  &.badge--link:hover {
+    background-color: var(--warning-dark);
+  }
+}
+
+// Danger Badge
+.badge--danger {
+  background-color: var(--danger);
+  color: var(--white);
+  
+  &.badge--link:hover {
+    background-color: var(--danger-dark);
+  }
+}
+
+// Info Badge
+.badge--info {
+  background-color: var(--info);
+  color: var(--white);
+  
+  &.badge--link:hover {
+    background-color: var(--info-dark);
+  }
+}
+
+// Neutral Badge
+.badge--neutral {
+  background-color: var(--neutral);
+  color: var(--white);
+  
+  &.badge--link:hover {
+    background-color: var(--neutral-dark);
+  }
+}
+
+// =============================================================================
+// Badge Style Modifiers
+// =============================================================================
+
+// Light badges - using ultra-light backgrounds
+.badge--light {
+  &.badge--primary {
+    background-color: var(--primary-ultra-light);
+    color: var(--primary-dark);
+    
+    &.badge--link:hover {
+      background-color: var(--primary-light);
+    }
+  }
+  
+  &.badge--secondary {
+    background-color: var(--secondary-ultra-light);
+    color: var(--secondary-dark);
+    
+    &.badge--link:hover {
+      background-color: var(--secondary-light);
+    }
+  }
+  
+  &.badge--success {
+    background-color: var(--success-ultra-light);
+    color: var(--success-dark);
+    
+    &.badge--link:hover {
+      background-color: var(--success-light);
+    }
+  }
+  
+  &.badge--warning {
+    background-color: var(--warning-ultra-light);
+    color: var(--warning-dark);
+    
+    &.badge--link:hover {
+      background-color: var(--warning-light);
+    }
+  }
+  
+  &.badge--danger {
+    background-color: var(--danger-ultra-light);
+    color: var(--danger-dark);
+    
+    &.badge--link:hover {
+      background-color: var(--danger-light);
+    }
+  }
+  
+  &.badge--info {
+    background-color: var(--info-ultra-light);
+    color: var(--info-dark);
+    
+    &.badge--link:hover {
+      background-color: var(--info-light);
+    }
+  }
+  
+  &.badge--neutral {
+    background-color: var(--neutral-ultra-light);
+    color: var(--neutral-dark);
+    
+    &.badge--link:hover {
+      background-color: var(--neutral-light);
+    }
+  }
+}
+
+// Outline badges
+.badge--outline {
+  background-color: transparent;
+  border: 1px solid currentColor;
+  
+  &.badge--primary {
+    color: var(--primary);
+    
+    &.badge--link:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+  }
+  
+  &.badge--secondary {
+    color: var(--secondary);
+    
+    &.badge--link:hover {
+      background-color: var(--secondary);
+      color: var(--white);
+    }
+  }
+  
+  &.badge--success {
+    color: var(--success);
+    
+    &.badge--link:hover {
+      background-color: var(--success);
+      color: var(--white);
+    }
+  }
+  
+  &.badge--warning {
+    color: var(--warning);
+    
+    &.badge--link:hover {
+      background-color: var(--warning);
+      color: var(--white);
+    }
+  }
+  
+  &.badge--danger {
+    color: var(--danger);
+    
+    &.badge--link:hover {
+      background-color: var(--danger);
+      color: var(--white);
+    }
+  }
+  
+  &.badge--info {
+    color: var(--info);
+    
+    &.badge--link:hover {
+      background-color: var(--info);
+      color: var(--white);
+    }
+  }
+}
+
+// =============================================================================
+// Tag Component (Similar to badge but for content)
+// =============================================================================
+
+.tag {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  font-size: 0.875em;
+  font-weight: var(--font-weight-normal);
+  line-height: 1.2;
+  text-decoration: none;
+  background-color: var(--neutral-ultra-light);
+  color: var(--neutral-dark);
+  border-radius: var(--border-radius-m);
+  transition: var(--transition-base);
+  
+  &:hover {
+    background-color: var(--neutral-light);
+    color: var(--neutral-ultra-dark);
+    text-decoration: none;
+  }
+  
+  &:focus {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+  
+  // Removable tag
+  &.tag--removable {
+    padding-right: 2em;
+    position: relative;
+    
+    .tag__remove {
+      position: absolute;
+      top: 50%;
+      right: 0.5em;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 0.9em;
+      line-height: 1;
+      color: inherit;
+      opacity: 0.7;
+      cursor: pointer;
+      
+      &:hover {
+        opacity: 1;
+      }
+      
+      &:focus {
+        outline: 1px solid currentColor;
+        outline-offset: 1px;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+// Tag color variants
+.tag--primary {
+  background-color: var(--primary-ultra-light);
+  color: var(--primary-dark);
+  
+  &:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-ultra-dark);
+  }
+}
+
+.tag--success {
+  background-color: var(--success-ultra-light);
+  color: var(--success-dark);
+  
+  &:hover {
+    background-color: var(--success-light);
+    color: var(--success-ultra-dark);
+  }
+}
+
+.tag--warning {
+  background-color: var(--warning-ultra-light);
+  color: var(--warning-dark);
+  
+  &:hover {
+    background-color: var(--warning-light);
+    color: var(--warning-ultra-dark);
+  }
+}
+
+.tag--danger {
+  background-color: var(--danger-ultra-light);
+  color: var(--danger-dark);
+  
+  &:hover {
+    background-color: var(--danger-light);
+    color: var(--danger-ultra-dark);
+  }
+}
+
+.tag--info {
+  background-color: var(--info-ultra-light);
+  color: var(--info-dark);
+  
+  &:hover {
+    background-color: var(--info-light);
+    color: var(--info-ultra-dark);
+  }
+}
+
+// =============================================================================
+// Size Modifiers
+// =============================================================================
+
+.badge--sm {
+  padding: 0.15em 0.4em;
+  font-size: 0.7em;
+}
+
+.badge--lg {
+  padding: 0.3em 0.8em;
+  font-size: 0.9em;
+}
+
+.tag--sm {
+  padding: 0.2em 0.6em;
+  font-size: 0.8em;
+}
+
+.tag--lg {
+  padding: 0.35em 1em;
+  font-size: 1em;
+}
+
+// =============================================================================
+// Badge Positioning (for notification badges)
+// =============================================================================
+
+.badge--positioned {
+  position: absolute;
+  top: -0.5em;
+  right: -0.5em;
+  transform: translate(50%, -50%);
+  
+  &.badge--sm {
+    top: -0.3em;
+    right: -0.3em;
+  }
+  
+  &.badge--lg {
+    top: -0.7em;
+    right: -0.7em;
+  }
+}
+
+// Pill-shaped badges (fully rounded)
+.badge--pill {
+  border-radius: 10em;
+}
+
+.tag--pill {
+  border-radius: 10em;
+}

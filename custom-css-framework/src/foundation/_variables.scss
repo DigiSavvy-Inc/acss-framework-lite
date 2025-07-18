@@ -1,0 +1,48 @@
+// =============================================================================
+// CSS Variables Generation
+// =============================================================================
+// This file generates all CSS custom properties from the framework config
+
+@use 'sass:map';
+@use './functions' as *;
+@use './mixins' as *;
+
+// Generate all CSS variables at the root level
+:root {
+  // ==========================================================================
+  // Base Settings
+  // ==========================================================================
+  
+  --base-font-size: #{config('base-font-size')}px;
+  --base-line-height: #{config('base-line-height')};
+  
+  // ==========================================================================
+  // Content Width
+  // ==========================================================================
+  
+  --content-width: #{config('content-width')};
+  --content-width-wide: #{config('content-width-wide')};
+  
+  // ==========================================================================
+  // Page Gutter (for responsive padding)
+  // ==========================================================================
+  
+  --gutter: clamp(1rem, 5vw, 3rem);
+
+  // ==========================================================================
+  // Button Variables
+  // ==========================================================================
+  
+  // Base button sizing
+  --btn-padding-y: #{config('sizes', 'm') * 0.5}rem;
+  --btn-padding-x: #{config('sizes', 'm') * 1}rem;
+  --btn-font-size: 1rem;
+  --btn-font-weight: #{config('font-weights', 'medium')};
+  --btn-line-height: 1.5;
+  --btn-border-width: 1px;
+  --btn-border-radius: #{config('border-radius', 'm')};
+  --btn-transition: all #{config('transitions', 'base')} ease-in-out;
+  --btn-focus-box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25);
+  --btn-disabled-opacity: 0.65;
+  --btn-icon-spacing: 0.5rem;
+}

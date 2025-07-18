@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color System Demo - Custom CSS Framework</title>
+    <link rel="stylesheet" href="../dist/framework.css">
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .demo-section {
+            margin-bottom: 3rem;
+        }
+        
+        .color-swatch {
+            display: inline-block;
+            width: 120px;
+            height: 80px;
+            margin: 0.5rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: center;
+            border: 1px solid var(--border-color-light);
+        }
+        
+        .utility-demo {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <h1>Custom CSS Framework - Color System Demo</h1>
+    
+    <div class="demo-section">
+        <h2>Brand Colors</h2>
+        <div class="color-swatch bg--primary text--white">Primary</div>
+        <div class="color-swatch bg--secondary text--white">Secondary</div>
+        <div class="color-swatch bg--accent text--white">Accent</div>
+        <div class="color-swatch bg--base text--white">Base</div>
+        <div class="color-swatch bg--shade text--white">Shade</div>
+        <div class="color-swatch bg--neutral text--base">Neutral</div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Contextual Colors</h2>
+        <div class="color-swatch bg--success text--white">Success</div>
+        <div class="color-swatch bg--warning text--white">Warning</div>
+        <div class="color-swatch bg--danger text--white">Danger</div>
+        <div class="color-swatch bg--info text--white">Info</div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Color Variations</h2>
+        <h3>Primary Variations</h3>
+        <div class="color-swatch bg--primary-ultra-light text--primary-dark">Ultra Light</div>
+        <div class="color-swatch bg--primary-light text--white">Light</div>
+        <div class="color-swatch bg--primary text--white">Base</div>
+        <div class="color-swatch bg--primary-dark text--white">Dark</div>
+        <div class="color-swatch bg--primary-ultra-dark text--white">Ultra Dark</div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Transparency Variants</h2>
+        <div style="background: var(--base); padding: 2rem; border-radius: 8px;">
+            <div class="color-swatch bg--primary-trans-20 text--primary-dark">20% Alpha</div>
+            <div class="color-swatch bg--primary-trans-40 text--primary-dark">40% Alpha</div>
+            <div class="color-swatch bg--primary-trans-60 text--white">60% Alpha</div>
+            <div class="color-swatch bg--primary-trans-80 text--white">80% Alpha</div>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Text Color Utilities</h2>
+        <p class="text--primary">This text uses .text--primary</p>
+        <p class="text--secondary">This text uses .text--secondary</p>
+        <p class="text--accent">This text uses .text--accent</p>
+        <p class="text--success">This text uses .text--success</p>
+        <p class="text--danger">This text uses .text--danger</p>
+        <p class="text--base-light">This text uses .text--base-light</p>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Color Combinations</h2>
+        <div class="utility-demo color-combo--primary">Primary combination</div>
+        <div class="utility-demo color-combo--success">Success combination</div>
+        <div class="utility-demo color-combo--warning">Warning combination</div>
+        <div class="utility-demo color-combo--danger">Danger combination</div>
+        <div class="utility-demo color-combo--primary-light">Primary light combination</div>
+        <div class="utility-demo color-combo--success-light">Success light combination</div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Border Color Utilities</h2>
+        <div style="padding: 1rem; border: 3px solid; margin: 0.5rem 0;" class="border--primary">Primary border</div>
+        <div style="padding: 1rem; border: 3px solid; margin: 0.5rem 0;" class="border--success">Success border</div>
+        <div style="padding: 1rem; border: 3px solid; margin: 0.5rem 0;" class="border--danger-light">Danger light border</div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>CSS Variables Available</h2>
+        <p>You can also use CSS variables directly:</p>
+        <div style="background: var(--primary-ultra-light); color: var(--primary-dark); padding: 1rem; border-radius: 6px;">
+            This uses: background: var(--primary-ultra-light); color: var(--primary-dark);
+        </div>
+        <br>
+        <div style="background: linear-gradient(45deg, var(--accent-trans-30), var(--primary-trans-30)); padding: 1rem; border-radius: 6px;">
+            Gradient using: var(--accent-trans-30) and var(--primary-trans-30)
+        </div>
+    </div>
+    
+</body>
+</html>

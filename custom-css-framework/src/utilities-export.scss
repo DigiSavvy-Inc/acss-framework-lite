@@ -1,0 +1,20 @@
+// =============================================================================
+// Utilities Export
+// =============================================================================
+// This file exports only utility classes for standalone use
+
+@import 'config/settings';
+@import 'foundation/functions';
+@import 'foundation/mixins';
+@import 'foundation/variables';
+@import 'foundation/breakpoints';
+
+// Import all utilities
+@import 'utilities/colors';
+@import 'utilities/text';
+@import 'utilities/spacing';
+@import 'utilities/layout';
+@import 'utilities/display';
+@import 'utilities/position';
+@import 'utilities/effects';
+@import 'utilities/responsive';

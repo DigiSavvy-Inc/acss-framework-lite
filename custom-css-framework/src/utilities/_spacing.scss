@@ -1,0 +1,341 @@
+// =============================================================================
+// Spacing Utilities
+// =============================================================================
+// Utility classes for padding, margin, and gap
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// =============================================================================
+// Helper Functions
+// =============================================================================
+
+// Get all spacing sizes
+@function get-spacing-sizes() {
+  @return map.keys(config('sizes'));
+}
+
+// Get special spacing values
+@function get-special-spacing() {
+  @return (
+    '0': 0,
+    'none': 0,
+    'px': 1px,
+    '0-5': 0.125rem,   // 0.5 becomes 0-5
+    '1': 0.25rem,
+    '1-5': 0.375rem,   // 1.5 becomes 1-5
+    '2': 0.5rem,
+    '2-5': 0.625rem,   // 2.5 becomes 2-5
+    '3': 0.75rem,
+    '3-5': 0.875rem,   // 3.5 becomes 3-5
+    '4': 1rem,
+  );
+}
+
+// =============================================================================
+// Space Utilities (for padding)
+// =============================================================================
+
+// All sides padding - T-shirt sizes
+@each $size in get-spacing-sizes() {
+  .space--#{$size} {
+    padding: var(--space-#{$size}) !important;
+  }
+  
+  // Fluid variant
+  .space--#{$size}-fluid {
+    padding: var(--space-#{$size}-fluid) !important;
+  }
+}
+
+// Special space values
+@each $name, $value in get-special-spacing() {
+  .space--#{$name} {
+    padding: #{$value} !important;
+  }
+}
+
+// Legacy padding utilities (for backwards compatibility)
+@each $size in get-spacing-sizes() {
+  .padding--#{$size} {
+    padding: var(--space-#{$size}) !important;
+  }
+}
+
+// Directional space utilities
+$directions: (
+  'top': 'padding-top',
+  'right': 'padding-right', 
+  'bottom': 'padding-bottom',
+  'left': 'padding-left',
+  'block': 'padding-block',
+  'inline': 'padding-inline'
+);
+
+@each $direction, $property in $directions {
+  // T-shirt sizes
+  @each $size in get-spacing-sizes() {
+    .space-#{$direction}--#{$size} {
+      #{$property}: var(--space-#{$size}) !important;
+    }
+    
+    // Legacy support
+    .padding-#{$direction}--#{$size} {
+      #{$property}: var(--space-#{$size}) !important;
+    }
+  }
+  
+  // Special sizes
+  @each $name, $value in get-special-spacing() {
+    .space-#{$direction}--#{$name} {
+      #{$property}: #{$value} !important;
+    }
+  }
+}
+
+// =============================================================================
+// Margin Utilities
+// =============================================================================
+
+// All sides margin - T-shirt sizes
+@each $size in get-spacing-sizes() {
+  .margin--#{$size} {
+    margin: var(--space-#{$size}) !important;
+  }
+  
+  // Fluid variant
+  .margin--#{$size}-fluid {
+    margin: var(--space-#{$size}-fluid) !important;
+  }
+  
+  // Negative margin
+  .margin--#{$size}-negative {
+    margin: var(--space-#{$size}-negative) !important;
+  }
+}
+
+// Special margin values
+@each $name, $value in get-special-spacing() {
+  .margin--#{$name} {
+    margin: #{$value} !important;
+  }
+}
+
+// Auto margin
+.margin--auto {
+  margin: auto !important;
+}
+
+// Directional margin utilities
+$margin-directions: (
+  'top': 'margin-top',
+  'right': 'margin-right',
+  'bottom': 'margin-bottom', 
+  'left': 'margin-left',
+  'block': 'margin-block',
+  'inline': 'margin-inline'
+);
+
+@each $direction, $property in $margin-directions {
+  // T-shirt sizes
+  @each $size in get-spacing-sizes() {
+    .margin-#{$direction}--#{$size} {
+      #{$property}: var(--space-#{$size}) !important;
+    }
+    
+    // Negative margins
+    .margin-#{$direction}--#{$size}-negative {
+      #{$property}: var(--space-#{$size}-negative) !important;
+    }
+  }
+  
+  // Special sizes
+  @each $name, $value in get-special-spacing() {
+    .margin-#{$direction}--#{$name} {
+      #{$property}: #{$value} !important;
+    }
+  }
+  
+  // Auto margins
+  .margin-#{$direction}--auto {
+    #{$property}: auto !important;
+  }
+}
+
+// =============================================================================
+// Gap Utilities
+// =============================================================================
+
+// Basic gap utilities - T-shirt sizes
+@each $size in get-spacing-sizes() {
+  .gap--#{$size} {
+    gap: var(--space-#{$size}) !important;
+  }
+  
+  // Fluid variant
+  .gap--#{$size}-fluid {
+    gap: var(--space-#{$size}-fluid) !important;
+  }
+}
+
+// Special gap values
+@each $name, $value in get-special-spacing() {
+  .gap--#{$name} {
+    gap: #{$value} !important;
+  }
+}
+
+// =============================================================================
+// Contextual Gap Utilities
+// =============================================================================
+
+// Content gaps - for content flow
+@each $size in get-spacing-sizes() {
+  .content-gap--#{$size} {
+    gap: var(--content-gap-#{$size}) !important;
+  }
+}
+
+// Default content gap
+.content-gap {
+  gap: var(--content-gap) !important;
+}
+
+// Grid gaps - for grid layouts
+@each $size in get-spacing-sizes() {
+  .grid-gap--#{$size} {
+    gap: var(--grid-gap-#{$size}) !important;
+  }
+}
+
+// Default grid gap
+.grid-gap {
+  gap: var(--grid-gap) !important;
+}
+
+// Container gaps - for major sections
+@each $size in get-spacing-sizes() {
+  .container-gap--#{$size} {
+    gap: var(--container-gap-#{$size}) !important;
+  }
+}
+
+// Default container gap
+.container-gap {
+  gap: var(--container-gap) !important;
+}
+
+// =============================================================================
+// Directional Gap Utilities
+// =============================================================================
+
+// Row and column gaps
+@each $size in get-spacing-sizes() {
+  .gap-row--#{$size} {
+    row-gap: var(--space-#{$size}) !important;
+  }
+  
+  .gap-column--#{$size} {
+    column-gap: var(--space-#{$size}) !important;
+  }
+}
+
+// Special row and column gaps
+@each $name, $value in get-special-spacing() {
+  .gap-row--#{$name} {
+    row-gap: #{$value} !important;
+  }
+  
+  .gap-column--#{$name} {
+    column-gap: #{$value} !important;
+  }
+}
+
+// =============================================================================
+// Section Spacing Utilities
+// =============================================================================
+
+// Section padding utilities
+@each $size in get-spacing-sizes() {
+  .section-padding--#{$size} {
+    padding-block: var(--section-space-#{$size}) !important;
+  }
+  
+  // Fluid variant
+  .section-padding--#{$size}-fluid {
+    padding-block: var(--section-space-#{$size}-fluid) !important;
+  }
+}
+
+// =============================================================================
+// Smart Spacing Utilities
+// =============================================================================
+
+// Related spacing (golden ratio relationships)
+@each $size in get-spacing-sizes() {
+  .space-related--#{$size} {
+    margin-bottom: var(--space-related-#{$size}) !important;
+  }
+}
+
+// =============================================================================
+// Responsive Spacing Utilities
+// =============================================================================
+
+// Generate responsive variants for key spacing utilities
+@each $bp-name, $bp-value in config('breakpoints') {
+  @media (min-width: $bp-value) {
+    // Space utilities
+    @each $size in ('xs', 's', 'm', 'l', 'xl') {
+      .#{$bp-name}\:space--#{$size} {
+        padding: var(--space-#{$size}) !important;
+      }
+      
+      .#{$bp-name}\:space-top--#{$size} {
+        padding-top: var(--space-#{$size}) !important;
+      }
+      
+      .#{$bp-name}\:space-bottom--#{$size} {
+        padding-bottom: var(--space-#{$size}) !important;
+      }
+      
+      .#{$bp-name}\:space-inline--#{$size} {
+        padding-inline: var(--space-#{$size}) !important;
+      }
+    }
+    
+    // Margin
+    @each $size in ('xs', 's', 'm', 'l', 'xl') {
+      .#{$bp-name}\:margin--#{$size} {
+        margin: var(--space-#{$size}) !important;
+      }
+      
+      .#{$bp-name}\:margin-top--#{$size} {
+        margin-top: var(--space-#{$size}) !important;
+      }
+      
+      .#{$bp-name}\:margin-bottom--#{$size} {
+        margin-bottom: var(--space-#{$size}) !important;
+      }
+    }
+    
+    // Gap
+    @each $size in ('xs', 's', 'm', 'l', 'xl') {
+      .#{$bp-name}\:gap--#{$size} {
+        gap: var(--space-#{$size}) !important;
+      }
+      
+      .#{$bp-name}\:grid-gap--#{$size} {
+        gap: var(--grid-gap-#{$size}) !important;
+      }
+    }
+    
+    // Section spacing
+    @each $size in ('s', 'm', 'l', 'xl') {
+      .#{$bp-name}\:section-padding--#{$size} {
+        padding-block: var(--section-space-#{$size}) !important;
+      }
+    }
+  }
+}

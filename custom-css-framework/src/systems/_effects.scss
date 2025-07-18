@@ -1,0 +1,133 @@
+// =============================================================================
+// Effects System
+// =============================================================================
+// Generates shadows, borders, transitions, and visual effects
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+
+// =============================================================================
+// Effects Variable Generation
+// =============================================================================
+
+:root {
+  // ==========================================================================
+  // Box Shadows
+  // ==========================================================================
+  
+  @each $name, $shadow in config('shadows') {
+    --shadow-#{$name}: #{$shadow};
+  }
+  
+  // Additional shadow variations
+  --shadow-none: none;
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-outline: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  
+  // Colored shadows using brand colors
+  --shadow-primary: 0 4px 14px 0 var(--primary-trans-20);
+  --shadow-secondary: 0 4px 14px 0 var(--secondary-trans-20);
+  --shadow-accent: 0 4px 14px 0 var(--accent-trans-20);
+  --shadow-success: 0 4px 14px 0 var(--success-trans-20);
+  --shadow-warning: 0 4px 14px 0 var(--warning-trans-20);
+  --shadow-danger: 0 4px 14px 0 var(--danger-trans-20);
+  
+  // ==========================================================================
+  // Border Radius
+  // ==========================================================================
+  
+  @each $name, $radius in config('border-radius') {
+    --radius-#{$name}: #{$radius};
+  }
+  
+  // ==========================================================================
+  // Border Widths
+  // ==========================================================================
+  
+  --border-width-0: 0;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+  --border-width-8: 8px;
+  
+  // Default border width
+  --border-width: var(--border-width-1);
+  
+  // ==========================================================================
+  // Transitions
+  // ==========================================================================
+  
+  @each $name, $duration in config('transitions') {
+    --transition-#{$name}: #{$duration};
+  }
+  
+  // Transition properties
+  --transition: all var(--transition-base) ease;
+  --transition-colors: color var(--transition-base) ease, background-color var(--transition-base) ease, border-color var(--transition-base) ease;
+  --transition-opacity: opacity var(--transition-base) ease;
+  --transition-shadow: box-shadow var(--transition-base) ease;
+  --transition-transform: transform var(--transition-base) ease;
+  
+  // ==========================================================================
+  // Focus Styles
+  // ==========================================================================
+  
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--primary);
+  --focus-ring-opacity: 0.5;
+  --focus-ring: 0 0 0 var(--focus-ring-width) rgba(var(--primary-h), var(--primary-s), var(--primary-l), var(--focus-ring-opacity));
+  
+  // ==========================================================================
+  // Backdrop Effects
+  // ==========================================================================
+  
+  --backdrop-blur-sm: blur(4px);
+  --backdrop-blur-md: blur(8px);
+  --backdrop-blur-lg: blur(16px);
+  --backdrop-blur-xl: blur(24px);
+  
+  // ==========================================================================
+  // Gradients
+  // ==========================================================================
+  
+  // Linear gradients using brand colors
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  
+  // Subtle gradients
+  --gradient-subtle-light: linear-gradient(135deg, var(--white), var(--neutral-ultra-light));
+  --gradient-subtle-dark: linear-gradient(135deg, var(--shade), var(--base-dark));
+  
+  // ==========================================================================
+  // Filter Effects
+  // ==========================================================================
+  
+  --filter-blur-sm: blur(4px);
+  --filter-blur-md: blur(8px);
+  --filter-blur-lg: blur(16px);
+  --filter-brightness-50: brightness(0.5);
+  --filter-brightness-75: brightness(0.75);
+  --filter-brightness-125: brightness(1.25);
+  --filter-brightness-150: brightness(1.5);
+  --filter-contrast-75: contrast(0.75);
+  --filter-contrast-125: contrast(1.25);
+  --filter-grayscale: grayscale(1);
+  --filter-sepia: sepia(1);
+  
+  // ==========================================================================
+  // Animation Variables
+  // ==========================================================================
+  
+  // Animation durations
+  --animate-spin: 1s;
+  --animate-ping: 1s;
+  --animate-pulse: 2s;
+  --animate-bounce: 1s;
+  
+  // Animation timing functions
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}

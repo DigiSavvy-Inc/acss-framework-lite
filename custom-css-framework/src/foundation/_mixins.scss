@@ -1,0 +1,290 @@
+// =============================================================================
+// Core Mixins
+// =============================================================================
+// Reusable mixins for common patterns and utilities
+
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+@use './functions' as *;
+
+// =============================================================================
+// Breakpoint Mixins
+// =============================================================================
+
+// Breakpoint mixin for responsive styles
+// Usage: @include breakpoint(tablet) { ... }
+@mixin breakpoint($breakpoint) {
+  $breakpoints: config('breakpoints');
+  
+  @if map.has-key($breakpoints, $breakpoint) {
+    $value: map.get($breakpoints, $breakpoint);
+    
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @error "Breakpoint '#{$breakpoint}' not found. Available breakpoints: #{map.keys($breakpoints)}";
+  }
+}
+
+// Generate styles at each breakpoint
+@mixin at-each-breakpoint {
+  @content;
+  
+  @each $name, $value in config('breakpoints') {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+// =============================================================================
+// CSS Variable Generation
+// =============================================================================
+
+// Generate CSS custom property with fallback
+@mixin css-var($property, $variable, $fallback: null) {
+  @if $fallback {
+    #{$property}: $fallback;
+    #{$property}: var(--#{$variable}, $fallback);
+  } @else {
+    #{$property}: var(--#{$variable});
+  }
+}
+
+// Generate CSS variables from a map
+@mixin generate-css-vars($map, $prefix: '') {
+  @each $key, $value in $map {
+    @if type-of($value) == 'map' {
+      @include generate-css-vars($value, #{$prefix}#{$key}-);
+    } @else {
+      --#{$prefix}#{$key}: #{$value};
+    }
+  }
+}
+
+// =============================================================================
+// Utility Generation Mixins
+// =============================================================================
+
+// Generate utility classes for a property
+@mixin generate-utilities($property, $prefix, $values, $responsive: true) {
+  @each $key, $value in $values {
+    .#{$prefix}--#{$key} {
+      #{$property}: $value;
+    }
+  }
+  
+  @if $responsive {
+    @each $bp-name, $bp-value in config('breakpoints') {
+      @media (min-width: $bp-value) {
+        @each $key, $value in $values {
+          .#{$bp-name}\:#{$prefix}--#{$key} {
+            #{$property}: $value;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Generate directional utilities (top, right, bottom, left, block, inline)
+@mixin generate-directional-utilities($property-base, $prefix, $values) {
+  // All sides
+  @include generate-utilities($property-base, $prefix, $values);
+  
+  // Individual sides
+  $sides: (
+    'top': #{$property-base}-top,
+    'right': #{$property-base}-right,
+    'bottom': #{$property-base}-bottom,
+    'left': #{$property-base}-left
+  );
+  
+  @each $side, $property in $sides {
+    @each $key, $value in $values {
+      .#{$prefix}-#{$side}--#{$key} {
+        #{$property}: $value;
+      }
+    }
+  }
+  
+  // Logical properties
+  @each $key, $value in $values {
+    .#{$prefix}-block--#{$key} {
+      #{$property-base}-block: $value;
+    }
+    .#{$prefix}-inline--#{$key} {
+      #{$property-base}-inline: $value;
+    }
+  }
+}
+
+// =============================================================================
+// Layout Mixins
+// =============================================================================
+
+// Container mixin
+@mixin container($width: null) {
+  @if $width == null {
+    $width: config('content-width');
+  }
+  
+  width: 100%;
+  max-width: $width;
+  margin-inline: auto;
+  padding-inline: var(--gutter, 1rem);
+}
+
+// Auto-responsive grid
+@mixin auto-grid($columns, $min-width: 250px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, $min-width), 1fr));
+  gap: var(--grid-gap);
+}
+
+// Standard grid
+@mixin grid($columns) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: var(--grid-gap);
+}
+
+// Grid gap mixin
+@mixin grid-gap($size) {
+  gap: var(--grid-gap-#{$size}, var(--space-#{$size}));
+}
+
+// =============================================================================
+// Typography Mixins
+// =============================================================================
+
+// Text size mixin with fluid scaling
+@mixin text-size($size) {
+  font-size: var(--text-#{$size});
+  line-height: var(--text-#{$size}-line-height, var(--text-line-height));
+  letter-spacing: var(--text-#{$size}-letter-spacing, var(--text-letter-spacing));
+}
+
+// Heading mixin
+@mixin heading($level) {
+  font-size: var(--h#{$level});
+  line-height: var(--h#{$level}-line-height, var(--heading-line-height));
+  letter-spacing: var(--h#{$level}-letter-spacing, var(--heading-letter-spacing));
+  font-weight: var(--h#{$level}-font-weight, var(--heading-font-weight));
+  font-family: var(--h#{$level}-font-family, var(--font-primary));
+}
+
+// =============================================================================
+// Effect Mixins
+// =============================================================================
+
+// Box shadow mixin
+@mixin shadow($size: 'm') {
+  box-shadow: var(--shadow-#{$size});
+}
+
+// Transition mixin
+@mixin transition($properties: all, $duration: 'base', $easing: ease) {
+  $duration-value: var(--transition-#{$duration}, 250ms);
+  transition: $properties $duration-value $easing;
+}
+
+// Focus visible styles
+@mixin focus-visible($offset: 2px) {
+  &:focus {
+    outline: none;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: $offset;
+    border-radius: var(--focus-radius, 0.25rem);
+  }
+}
+
+// =============================================================================
+// Accessibility Mixins
+// =============================================================================
+
+// Visually hidden but accessible to screen readers
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Reduce motion for users who prefer it
+@mixin reduce-motion {
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// =============================================================================
+// Component Mixins
+// =============================================================================
+
+// Card container mixin
+@mixin card($padding: 'l', $shadow: 'm', $radius: 'm') {
+  padding: var(--space-#{$padding});
+  background: var(--card-bg, var(--white));
+  border-radius: var(--radius-#{$radius});
+  box-shadow: var(--shadow-#{$shadow});
+}
+
+// Button base mixin
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--btn-padding-block) var(--btn-padding-inline);
+  font-family: var(--font-primary);
+  font-weight: var(--btn-font-weight, 500);
+  text-decoration: none;
+  border: var(--btn-border-width, 2px) solid transparent;
+  border-radius: var(--btn-radius, var(--radius-m));
+  cursor: pointer;
+  @include transition(all);
+  @include focus-visible;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Button variant mixin
+@mixin button($color: 'primary', $variant: 'solid') {
+  @include button-base;
+  
+  @if $variant == 'solid' {
+    background-color: var(--#{$color});
+    color: var(--#{$color}-text, var(--white));
+    border-color: var(--#{$color});
+    
+    &:hover:not(:disabled) {
+      background-color: var(--#{$color}-hover);
+      border-color: var(--#{$color}-hover);
+    }
+  } @else if $variant == 'outline' {
+    background-color: transparent;
+    color: var(--#{$color});
+    border-color: var(--#{$color});
+    
+    &:hover:not(:disabled) {
+      background-color: var(--#{$color});
+      color: var(--#{$color}-text, var(--white));
+    }
+  }
+}

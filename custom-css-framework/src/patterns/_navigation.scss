@@ -1,0 +1,273 @@
+// =============================================================================
+// Navigation Components
+// =============================================================================
+// Various navigation patterns following ACSS principles
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// =============================================================================
+// Base Navigation Component
+// =============================================================================
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  
+  .nav__item {
+    margin: 0;
+  }
+  
+  .nav__link {
+    display: block;
+    padding: var(--space-s) var(--space-m);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition-base);
+    border-radius: var(--border-radius-s);
+    
+    &:hover {
+      color: var(--primary);
+      background-color: var(--neutral-ultra-light);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--focus-color);
+      outline-offset: 2px;
+    }
+    
+    &.nav__link--active {
+      color: var(--primary);
+      font-weight: var(--font-weight-medium);
+    }
+    
+    &.nav__link--disabled {
+      color: var(--neutral);
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.6;
+    }
+  }
+}
+
+// =============================================================================
+// Navigation Variants
+// =============================================================================
+
+// Pills Navigation
+.nav--pills {
+  .nav__link {
+    border-radius: var(--border-radius-m);
+    
+    &.nav__link--active {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+    
+    &:hover:not(.nav__link--active) {
+      background-color: var(--primary-ultra-light);
+      color: var(--primary-dark);
+    }
+  }
+}
+
+// Tabs Navigation
+.nav--tabs {
+  border-bottom: 1px solid var(--border-color);
+  
+  .nav__link {
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-s) var(--border-radius-s) 0 0;
+    margin-bottom: -1px;
+    
+    &:hover {
+      border-color: var(--border-color-light);
+      background-color: var(--neutral-ultra-light);
+    }
+    
+    &.nav__link--active {
+      background-color: var(--bg-color);
+      border-color: var(--border-color) var(--border-color) var(--bg-color);
+      color: var(--text-color);
+    }
+  }
+}
+
+// Vertical Navigation
+.nav--vertical {
+  flex-direction: column;
+  
+  .nav__item {
+    width: 100%;
+  }
+  
+  .nav__link {
+    justify-content: flex-start;
+  }
+}
+
+// Justified Navigation
+.nav--justified {
+  .nav__item {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+// =============================================================================
+// Breadcrumb Component
+// =============================================================================
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--space-s) 0;
+  margin-bottom: var(--space-m);
+  list-style: none;
+  
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    
+    &:not(:last-child)::after {
+      content: '/';
+      margin: 0 var(--space-s);
+      color: var(--neutral);
+    }
+    
+    &:last-child {
+      color: var(--neutral);
+    }
+  }
+  
+  .breadcrumb__link {
+    color: var(--primary);
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+    
+    &:focus {
+      outline: 2px solid var(--focus-color);
+      outline-offset: 2px;
+      border-radius: var(--border-radius-s);
+    }
+  }
+}
+
+// =============================================================================
+// Pagination Component
+// =============================================================================
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: var(--border-radius-m);
+  
+  .pagination__item {
+    &:first-child .pagination__link {
+      border-top-left-radius: var(--border-radius-m);
+      border-bottom-left-radius: var(--border-radius-m);
+    }
+    
+    &:last-child .pagination__link {
+      border-top-right-radius: var(--border-radius-m);
+      border-bottom-right-radius: var(--border-radius-m);
+    }
+  }
+  
+  .pagination__link {
+    position: relative;
+    display: block;
+    padding: var(--space-s) var(--space-m);
+    margin-left: -1px;
+    color: var(--primary);
+    text-decoration: none;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    transition: var(--transition-base);
+    
+    &:hover {
+      z-index: 2;
+      color: var(--primary-dark);
+      background-color: var(--neutral-ultra-light);
+      border-color: var(--border-color);
+    }
+    
+    &:focus {
+      z-index: 3;
+      outline: 2px solid var(--focus-color);
+      outline-offset: -2px;
+    }
+    
+    &.pagination__link--active {
+      z-index: 3;
+      color: var(--white);
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    &.pagination__link--disabled {
+      color: var(--neutral);
+      pointer-events: none;
+      background-color: var(--neutral-ultra-light);
+      border-color: var(--border-color-light);
+    }
+  }
+}
+
+// =============================================================================
+// Navigation Size Modifiers
+// =============================================================================
+
+.nav--sm {
+  .nav__link {
+    padding: var(--space-xs) var(--space-s);
+    font-size: var(--text-s);
+  }
+}
+
+.nav--lg {
+  .nav__link {
+    padding: var(--space-m) var(--space-l);
+    font-size: var(--text-l);
+  }
+}
+
+.breadcrumb--sm {
+  padding: var(--space-xs) 0;
+  font-size: var(--text-s);
+  
+  .breadcrumb__item:not(:last-child)::after {
+    margin: 0 var(--space-xs);
+  }
+}
+
+.breadcrumb--lg {
+  padding: var(--space-m) 0;
+  font-size: var(--text-l);
+  
+  .breadcrumb__item:not(:last-child)::after {
+    margin: 0 var(--space-m);
+  }
+}
+
+.pagination--sm {
+  .pagination__link {
+    padding: var(--space-xs) var(--space-s);
+    font-size: var(--text-s);
+  }
+}
+
+.pagination--lg {
+  .pagination__link {
+    padding: var(--space-m) var(--space-l);
+    font-size: var(--text-l);
+  }
+}

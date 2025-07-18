@@ -1,0 +1,63 @@
+// =============================================================================
+// Custom CSS Framework
+// =============================================================================
+// A lightweight, variable-driven CSS framework inspired by Automatic.css
+// 
+// Usage:
+// 1. Import this file in your project
+// 2. Override $framework-config before importing to customize
+// 3. Use CSS variables and utility classes in your HTML
+
+// =============================================================================
+// Configuration
+// =============================================================================
+
+@import 'config/settings';
+
+// =============================================================================
+// Foundation Layer
+// =============================================================================
+// Core functions, mixins, and base setup
+
+@import 'foundation/functions';
+@import 'foundation/mixins';
+@import 'foundation/variables';
+@import 'foundation/breakpoints';
+@import 'foundation/reset';
+
+// =============================================================================
+// Systems
+// =============================================================================
+// Core systems that generate CSS variables
+
+@import 'systems/colors';
+@import 'systems/typography';
+@import 'systems/spacing';
+@import 'systems/layout';
+@import 'systems/effects';
+
+// =============================================================================
+// Utilities
+// =============================================================================
+// Utility classes for rapid development
+
+@import 'utilities/colors';
+@import 'utilities/text';
+@import 'utilities/spacing';
+@import 'utilities/layout';
+@import 'utilities/display';
+@import 'utilities/position';
+@import 'utilities/effects';
+@import 'utilities/responsive';
+
+// =============================================================================
+// Patterns (Optional)
+// =============================================================================
+// Common component patterns - can be excluded if not needed
+
+@import 'patterns/buttons';
+@import 'patterns/cards';
+@import 'patterns/forms';
+@import 'patterns/alerts';
+@import 'patterns/navigation';
+@import 'patterns/badges';

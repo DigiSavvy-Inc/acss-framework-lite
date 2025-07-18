@@ -1,0 +1,1106 @@
+Automatic.css (ACSS) Framework Guide for LLMs
+
+Table of Contents
+1. Introduction & Core Philosophy
+2. Framework Architecture
+3. Naming Conventions
+4. Variable System
+5. Utility Classes
+6. When to Use Variables vs Utilities
+7. Contextual Utilities
+8. Component Development
+9. Best Practices
+10. Advanced Techniques
+11. Plugin Architecture & Extension Points
+12. SCSS Functions & Mixins
+13. Builder-Specific Integration
+14. Developer API Reference
+15. Performance Optimization
+
+---
+
+Introduction & Core Philosophy
+
+Automatic.css (ACSS) is a comprehensive CSS framework designed specifically for WordPress page builders. It emphasizes:
+
+1. Structural Consistency Over Unlimited Flexibility: ACSS intentionally limits customization options to ensure consistency across projects
+2. Complete Framework: Everything you need is included out-of-the-box
+3. Mathematical Precision: All values follow perfect mathematical scales
+4. Contextual Design: Utilities are designed for specific contexts (grid gaps, content gaps, etc.)
+5. Builder Integration: True integration with page builders, not just CSS utilities
+
+Key Principles
+
+- Consistency is King: Same utility names, same relationships, same logic across all projects
+- T-Shirt Sizing: Limited options (xs, s, m, l, xl, xxl) encourage consistency
+- Automatic Responsiveness: Built-in responsive behavior without media queries
+- Zero Specificity: Framework styles can be easily overridden
+- Best Practices by Default: Accessibility, performance, and maintainability built-in
+
+---
+
+Framework Architecture
+
+ACSS is organized into several core systems:
+
+1. Color System: Comprehensive color palette with automatic variations
+2. Typography System: Mathematical type scale with automatic responsiveness
+3. Spacing System: Golden ratio-based spacing with contextual utilities
+4. Layout System: Grid, flexbox, and container utilities
+5. Component System: Pre-styled components with customization via variables
+6. Effects System: Shadows, borders, transitions, etc.
+
+---
+
+Naming Conventions
+
+ACSS uses consistent, predictable naming patterns:
+
+Variables
+```css
+/* Colors */
+--primary           /* Base color */
+--primary-hover     /* Hover state */
+--primary-light     /* Light variation */
+--primary-dark      /* Dark variation */
+
+/* Typography */
+--h1, --h2, --h3    /* Heading sizes */
+--text-s, --text-m  /* Text sizes */
+
+/* Spacing */
+--space-s           /* Component spacing */
+--section-space-m   /* Section spacing */
+
+/* Layout */
+--grid-3            /* 3-column grid */
+--content-width     /* Max content width */
+```
+
+Utility Classes
+```css
+/* Double dash syntax */
+.text--xl           /* Text size XL */
+.text--primary      /* Primary color text */
+.text--center       /* Center alignment */
+
+/* Spacing utilities */
+.padding--m         /* Medium padding */
+.margin--l          /* Large margin */
+.gap--s            /* Small gap */
+
+/* Grid utilities */
+.grid--3           /* 3-column grid */
+.grid--auto-3      /* Auto-responsive 3-column */
+```
+
+---
+
+Variable System
+
+Color Variables
+
+```css
+/* Main Brand Colors */
+--action            /* Call-to-action color */
+--primary          /* Primary brand color */
+--secondary        /* Secondary brand color */
+--accent           /* Accent color */
+--base             /* Base/neutral color */
+--shade            /* Black/dark shade */
+--neutral          /* True neutral */
+
+/* Each color includes these variations */
+--{color}-hover         /* Hover state */
+--{color}-ultra-light   /* 95% lightness */
+--{color}-light         /* 85% lightness */
+--{color}-medium        /* 50% lightness */
+--{color}-dark          /* 25% lightness */
+--{color}-ultra-dark    /* 10% lightness */
+--{color}-trans-{10-90} /* Transparency variants */
+
+/* Contextual Colors */
+--success          /* Green */
+--warning          /* Yellow */
+--danger           /* Red */
+--info             /* Blue */
+```
+
+Typography Variables
+
+```css
+/* Font Families */
+--font-primary     /* Primary font stack */
+--font-secondary   /* Secondary font stack */
+
+/* Heading Sizes */
+--h1               /* Largest heading */
+--h2               
+--h3               
+--h4               
+--h5               
+--h6               /* Smallest heading */
+
+/* Text Sizes (T-shirt sizing) */
+--text-xs          /* Extra small */
+--text-s           /* Small */
+--text-m           /* Medium (base) */
+--text-l           /* Large */
+--text-xl          /* Extra large */
+--text-xxl         /* Double extra large */
+
+/* Typography Properties */
+--text-line-height             /* Global text line height */
+--heading-line-height          /* Global heading line height */
+--text-letter-spacing          /* Global text letter spacing */
+--heading-letter-spacing       /* Global heading letter spacing */
+
+/* Size-specific overrides */
+--text-{size}-font-size
+--text-{size}-line-height
+--text-{size}-font-weight
+--text-{size}-letter-spacing
+--text-{size}-font-style
+--text-{size}-text-transform
+--text-{size}-max-width
+```
+
+Spacing Variables
+
+```css
+/* Component Spacing (T-shirt sizing) */
+--space-xs         /* Extra small spacing */
+--space-s          /* Small spacing */
+--space-m          /* Medium spacing */
+--space-l          /* Large spacing */
+--space-xl         /* Extra large spacing */
+--space-xxl        /* Double extra large */
+
+/* Section Spacing */
+--section-space-xs
+--section-space-s
+--section-space-m
+--section-space-l
+--section-space-xl
+--section-space-xxl
+
+/* Contextual Spacing */
+--container-gap    /* Gap between containers in sections */
+--content-gap      /* Gap between content elements */
+--grid-gap         /* Gap between grid items */
+--gutter           /* Page gutter/margin */
+```
+
+Layout Variables
+
+```css
+/* Content Width */
+--content-width              /* Max content width */
+--content-width-safe         /* Width with gutters */
+
+/* Grid Templates */
+--grid-1 through --grid-12   /* Column grids */
+--grid-1-2                   /* 1fr 2fr */
+--grid-2-1                   /* 2fr 1fr */
+--grid-1-3                   /* 1fr 3fr */
+--grid-3-1                   /* 3fr 1fr */
+--grid-2-3                   /* 2fr 3fr */
+--grid-3-2                   /* 3fr 2fr */
+
+/* Auto-responsive Grids */
+--grid-auto-1 through --grid-auto-12
+```
+
+---
+
+Utility Classes
+
+Text Utilities
+
+```css
+/* Size */
+.text--xs, .text--s, .text--m, .text--l, .text--xl, .text--xxl
+
+/* Color */
+.text--{any-color-in-system}
+.text--primary, .text--action-dark, etc.
+
+/* Weight */
+.text--100 through .text--900
+
+/* Style */
+.text--italic, .text--oblique
+
+/* Decoration */
+.text--none, .text--underline, .text--line-through
+.text--underline-wavy, .text--underline-dotted
+
+/* Transform */
+.text--uppercase, .text--lowercase, .text--capitalize
+
+/* Alignment */
+.text--left, .text--center, .text--right, .text--justify
+```
+
+Spacing Utilities
+
+```css
+/* Padding (all sides) */
+.padding--xs through .padding--xxl
+
+/* Margin (all sides) */
+.margin--xs through .margin--xxl
+
+/* Directional variants */
+.padding-top--, .padding-right--, .padding-bottom--, .padding-left--
+.padding-block--, .padding-inline--
+.margin-top--, .margin-right--, .margin-bottom--, .margin-left--
+.margin-block--, .margin-inline--
+
+/* Gap (for flex/grid containers) */
+.gap--xs through .gap--xxl
+```
+
+Grid Utilities
+
+```css
+/* Basic grids */
+.grid--1 through .grid--12
+
+/* Unbalanced grids */
+.grid--1-2, .grid--2-1, .grid--1-3, .grid--3-1, .grid--2-3, .grid--3-2
+
+/* Auto-responsive grids */
+.grid--auto-1 through .grid--auto-12
+
+/* Grid alignment */
+.grid--align-start, .grid--align-center, .grid--align-end
+.grid--justify-start, .grid--justify-center, .grid--justify-end
+```
+
+Layout Utilities
+
+```css
+/* Display */
+.display--block, .display--inline, .display--flex, .display--grid
+.display--none, .display--inline-block
+
+/* Width */
+.width--xs through .width--xxl
+.width--10 through .width--100 (percentage based)
+
+/* Container */
+.container
+.container--xs through .container--xxl
+```
+
+---
+
+When to Use Variables vs Utilities
+
+Use Variables When:
+
+1. Building Custom Components
+   ```css
+   .card {
+       padding: var(--space-l);
+       background: var(--shade-100);
+       border-radius: var(--radius-m);
+       box-shadow: var(--shadow-m);
+   }
+   ```
+
+2. Creating Reusable Patterns
+   ```css
+   .service-grid {
+       display: grid;
+       grid-template-columns: var(--grid-3);
+       gap: var(--grid-gap);
+   }
+   ```
+
+3. Needing Calculations
+   ```css
+   .hero {
+       padding-block: calc(var(--section-space-l) * 1.5);
+       min-height: calc(100vh - var(--header-height));
+   }
+   ```
+
+4. Maintaining Consistency Across Multiple Elements
+   ```css
+   .testimonial-card,
+   .service-card,
+   .feature-card {
+       --card-padding: var(--space-m);
+       --card-radius: var(--radius-l);
+       padding: var(--card-padding);
+       border-radius: var(--card-radius);
+   }
+   ```
+
+Use Utility Classes When:
+
+1. Rapid Prototyping
+   ```html
+   <div class="padding--l background--primary-light radius--m">
+       Quick prototype
+   </div>
+   ```
+
+2. One-off Adjustments
+   ```html
+   <h2 class="text--primary-dark margin-bottom--s">
+       Special heading
+   </h2>
+   ```
+
+3. Responsive Overrides
+   ```html
+   <section class="padding--m tablet:padding--l desktop:padding--xl">
+       Responsive section
+   </section>
+   ```
+
+4. Quick Style Changes
+   ```html
+   <p class="text--s text--shade-600 text--italic">
+       Styled paragraph
+   </p>
+   ```
+
+Best Practice: Combine Both
+
+```html
+<!-- Component class for structure, utilities for variations -->
+<div class="card background--primary-light">
+    <h3 class="card__title text--action">Title</h3>
+    <p class="card__content text--s">Content</p>
+</div>
+```
+
+```css
+/* Component uses variables */
+.card {
+    padding: var(--space-l);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-s);
+}
+```
+
+---
+
+Contextual Utilities
+
+ACSS's contextual utilities are one of its most powerful features. They ensure consistent spacing in specific contexts:
+
+Container Gap
+Used for spacing between containers within sections:
+```css
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--container-gap);
+}
+```
+
+Content Gap
+Used for spacing between content elements (headings, paragraphs, images):
+```css
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--content-gap);
+}
+```
+
+Grid Gap
+Used for consistent grid spacing:
+```css
+.product-grid {
+    display: grid;
+    grid-template-columns: var(--grid-3);
+    gap: var(--grid-gap);
+}
+```
+
+Advanced Usage with calc()
+```css
+/* Need double the standard grid gap */
+.wide-grid {
+    gap: calc(var(--grid-gap) * 2);
+}
+
+/* 50% more content spacing */
+.loose-content {
+    gap: calc(var(--content-gap) * 1.5);
+}
+```
+
+---
+
+Component Development
+
+BEM with ACSS Variables
+
+```css
+/* Component Block */
+.testimonial {
+    --testimonial-padding: var(--space-l);
+    --testimonial-bg: var(--shade-100);
+    --testimonial-radius: var(--radius-l);
+    
+    padding: var(--testimonial-padding);
+    background: var(--testimonial-bg);
+    border-radius: var(--testimonial-radius);
+    box-shadow: var(--shadow-m);
+}
+
+/* Component Elements */
+.testimonial__content {
+    font-size: var(--text-m);
+    line-height: var(--text-line-height);
+    color: var(--text-color);
+    margin-bottom: var(--space-m);
+}
+
+.testimonial__author {
+    font-size: var(--text-s);
+    font-weight: var(--font-weight-600);
+    color: var(--primary);
+}
+
+/* Component Modifiers */
+.testimonial--featured {
+    --testimonial-bg: var(--primary-ultra-light);
+    --testimonial-padding: var(--space-xl);
+    border: 2px solid var(--primary);
+}
+```
+
+Button System Example
+
+```css
+/* Base button using ACSS variables */
+.btn {
+    /* Use ACSS button variables */
+    padding: var(--btn-padding-block) var(--btn-padding-inline);
+    min-width: var(--btn-min-width);
+    font-weight: var(--btn-font-weight);
+    border-radius: var(--btn-border-radius);
+    border: var(--btn-border-width) solid transparent;
+    
+    /* Transitions */
+    transition: var(--transition);
+    
+    /* Typography */
+    font-family: var(--font-primary);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Primary button modifier */
+.btn--primary {
+    background-color: var(--action);
+    color: var(--white);
+    border-color: var(--action);
+}
+
+.btn--primary:hover {
+    background-color: var(--action-hover);
+    border-color: var(--action-hover);
+}
+```
+
+---
+
+Best Practices
+
+1. Use T-Shirt Sizing Consistently
+```css
+/* Good: Predictable and limited options */
+--space-m
+--text-l
+--radius-xl
+
+/* Avoid: Creating custom sizes */
+--space-medium-large  /* Use L instead */
+--text-15             /* Use S or M */
+```
+
+2. Leverage Contextual Utilities
+```css
+/* Good: Using contextual spacing */
+.features-grid {
+    gap: var(--grid-gap);
+}
+
+/* Even better: With calc for variations */
+.features-grid--tight {
+    gap: calc(var(--grid-gap) * 0.75);
+}
+```
+
+3. Maintain Variable Relationships
+```css
+/* Good: Related values using calc */
+.component {
+    padding: var(--space-m);
+    margin-bottom: calc(var(--space-m) * 2);
+    border-radius: calc(var(--radius-m) / 2);
+}
+```
+
+4. Use Automatic Features
+- Let ACSS handle responsive typography automatically
+- Use automatic contextual spacing where available
+- Leverage built-in accessibility features
+
+5. Component Organization
+```css
+/* 1. Local custom properties */
+.component {
+    --component-gap: var(--space-m);
+    --component-padding: var(--space-l);
+    
+    /* 2. Use the local properties */
+    padding: var(--component-padding);
+    
+    /* 3. Direct ACSS variables for non-customized properties */
+    background: var(--white);
+    border-radius: var(--radius-m);
+}
+```
+
+---
+
+Advanced Techniques
+
+1. Responsive Variables Without Media Queries
+ACSS handles responsive typography automatically, but you can create responsive spacing:
+
+```css
+.hero {
+    /* Fluid spacing that scales with viewport */
+    padding-block: clamp(
+        var(--section-space-m),
+        10vw,
+        var(--section-space-xl)
+    );
+}
+```
+
+2. Creating Tweener Sizes
+When you need sizes between the standard options:
+
+```css
+/* Need something between M and L */
+.special-section {
+    padding-block: calc(
+        (var(--section-space-m) + var(--section-space-l)) / 2
+    );
+}
+```
+
+3. Maintaining Context with Custom Values
+```css
+/* Still using grid-gap context but with adjustment */
+.testimonial-grid {
+    /* Base grid setup */
+    display: grid;
+    grid-template-columns: var(--grid-3);
+    
+    /* Contextual spacing with modification */
+    gap: calc(var(--grid-gap) * 1.25);
+}
+```
+
+4. SCSS Mixins (Dashboard Only)
+ACSS provides mixins for advanced users in the Custom SCSS area:
+
+```scss
+.custom-button {
+    @include btn(primary, yes);
+}
+
+.custom-card {
+    @include card;
+}
+```
+
+5. Smart Spacing
+ACSS can automatically handle margin collapsing and spacing conflicts. Enable Smart Spacing for:
+- Automatic first/last child margin removal
+- Consistent spacing in content areas
+- Prevention of margin collapse issues
+
+---
+
+Framework Integration Tips
+
+Working with Page Builders
+1. Use utility classes for quick prototyping in the builder
+2. Create custom classes using variables for reusable components
+3. Leverage builder-specific ACSS features when available
+
+Project Consistency
+1. Never rename ACSS utilities
+2. Don't modify core variable values per-project
+3. Use calc() for variations rather than creating new variables
+4. Document any custom components using ACSS variables
+
+Performance Considerations
+1. Unused utilities can be disabled in the ACSS dashboard
+2. Variables have zero runtime performance cost
+3. Utility classes are optimized for minimal CSS output
+
+---
+
+Summary
+
+ACSS provides a complete, opinionated framework that prioritizes:
+- Consistency over unlimited flexibility
+- Best practices baked into the framework
+- Contextual design with purpose-built utilities
+- Mathematical precision in scales and ratios
+- Developer efficiency through predictable patterns
+
+Key takeaways for LLM usage:
+1. Always use double-dash syntax for utilities (.text--xl, not .text-xl)
+2. Stick to T-shirt sizing (xs, s, m, l, xl, xxl)
+3. Use contextual utilities (container-gap, content-gap, grid-gap)
+4. Combine variables for components with utilities for overrides
+5. Leverage calc() for variations while maintaining context
+6. Never modify core framework naming or structure
+
+By following ACSS principles, you ensure consistent, maintainable, and scalable websites across all projects.
+
+---
+
+Plugin Architecture & Extension Points
+
+ACSS is built as a modular WordPress plugin with extensive customization capabilities through hooks and filters.
+
+File Structure Overview
+```
+automaticcss-plugin/
+├── automaticcss-plugin.php    # Main plugin file
+├── classes/                    # Core PHP classes
+│   ├── Plugin.php             # Main orchestrator
+│   ├── CSS_Engine/            # CSS generation system
+│   ├── Framework/             # Core framework logic
+│   ├── Model/                 # Database/config models
+│   ├── UI/                    # Dashboard interfaces
+│   └── Features/              # Individual features
+├── config/                    # Configuration files
+│   ├── framework.json         # Class definitions
+│   ├── variables.json         # Default values
+│   └── utility-expansions/    # Responsive rules
+└── assets/scss/               # SCSS architecture
+    ├── automatic.scss         # Main entry point
+    ├── modules/               # Feature modules
+    └── platforms/             # Builder-specific
+```
+
+WordPress Hooks for Customization
+
+Plugin Lifecycle Actions:
+```php
+// Activation/deactivation hooks
+add_action('automaticcss_activate_plugin_start', 'my_activation_function');
+add_action('automaticcss_deactivate_plugin_end', 'my_deactivation_function');
+
+// Update hooks (passes new_version, old_version)
+add_action('automaticcss_update_plugin_start', 'my_update_function', 10, 2);
+```
+
+CSS Generation Hooks:
+```php
+// Modify variables before CSS generation
+add_filter('automaticcss_framework_variables', function($variables) {
+    $variables['custom-spacing'] = '2rem';
+    return $variables;
+});
+
+// Hook into CSS generation process
+add_action('automaticcss_before_generate_framework_css', 'before_css_generation');
+add_action('automaticcss_after_generate_framework_css', 'after_css_generation');
+```
+
+Variable Processing Filters:
+```php
+// Modify any variable's input value
+add_filter('automaticcss_input_value_primary', function($value) {
+    return '#ff0000'; // Force primary color to red
+});
+
+// Modify output values
+add_filter('automaticcss_output_value_space-m', function($value) {
+    return $value * 1.5; // Increase medium spacing by 50%
+});
+
+// Color-specific filters
+add_filter('automaticcss_output_value_primary-h', 'modify_hue');      // HSL hue
+add_filter('automaticcss_output_value_primary-s', 'modify_saturation'); // HSL saturation
+add_filter('automaticcss_output_value_primary-l', 'modify_lightness');  // HSL lightness
+```
+
+Settings Integration:
+```php
+// Before/after settings save
+add_action('automaticcss_settings_before_save', function($values) {
+    // Validate or modify settings before save
+});
+
+add_action('automaticcss_settings_after_regeneration', function($values) {
+    // Perform actions after CSS regeneration
+});
+```
+
+---
+
+SCSS Functions & Mixins
+
+ACSS provides powerful SCSS functions and mixins for use in the Custom SCSS area of the dashboard.
+
+Core SCSS Functions
+
+```scss
+// Convert pixels to rem (uses root font size)
+.element {
+    padding: ctr(24); // Converts 24px to rem
+}
+
+// Create fluid/responsive values
+.hero {
+    // Clamps between min and max based on viewport
+    padding: fluid(40, 80); // 40px min, 80px max
+}
+
+// Power/exponent calculations
+.scale {
+    font-size: pow(1.2, 3); // 1.2^3 = 1.728
+}
+
+// Percentage conversion
+.width {
+    width: percent(75); // Returns 75%
+}
+
+// Strip units from values
+$number: strip-unit(16px); // Returns 16
+```
+
+Available Mixins
+
+Button Mixins:
+```scss
+// Create a button with ACSS styling
+.my-button {
+    @include btn(primary, yes); // (style, hover-state)
+}
+
+// Button variations
+.outline-button {
+    @include btn-outline(secondary);
+}
+```
+
+Grid Mixins:
+```scss
+// Create responsive grids
+.custom-grid {
+    @include grid(3); // 3-column grid
+    @include grid-gap(m); // Medium gap
+}
+
+// Auto-responsive grid
+.product-grid {
+    @include auto-grid(4, 300px); // 4 cols, 300px min
+}
+```
+
+Breakpoint Mixins:
+```scss
+// Use ACSS breakpoints
+.responsive-element {
+    padding: var(--space-m);
+    
+    @include breakpoint(tablet) {
+        padding: var(--space-l);
+    }
+    
+    @include breakpoint(desktop) {
+        padding: var(--space-xl);
+    }
+}
+
+// Generate styles at all breakpoints
+.adaptive {
+    @include at-each-breakpoint {
+        // Styles generated for each breakpoint
+    }
+}
+```
+
+Overlay Mixin:
+```scss
+// Create overlay effects
+.hero-section {
+    @include overlay(
+        var(--black-trans-60),  // Background color
+        0.8,                    // Opacity
+        url('pattern.png')     // Optional background image
+    );
+}
+```
+
+Platform Detection Mixins:
+```scss
+// Conditional styles based on active builders
+.custom-component {
+    @include if-bricks-on {
+        // Styles only when Bricks is active
+    }
+    
+    @include if-oxygen-off {
+        // Styles only when Oxygen is NOT active
+    }
+    
+    @include if-all-builders-off {
+        // Styles for vanilla WordPress
+    }
+}
+```
+
+Spacing Mixins:
+```scss
+// Map-based spacing utilities
+.card {
+    @include map-get-padding(l); // Large padding
+    @include map-get-gap(m);      // Medium gap
+}
+
+// Section spacing
+.hero {
+    @include map-get-section-spacing(xl);
+}
+```
+
+---
+
+Builder-Specific Integration
+
+ACSS provides deep integration with various WordPress page builders, each with specific optimizations and features.
+
+Supported Builders
+- Bricks Builder
+- Oxygen Builder
+- Breakdance
+- Cwicly
+- GeneratePress/GenerateBlocks
+- Gutenberg (Block Editor)
+- Frames
+
+Context Detection
+
+ACSS automatically detects the current context:
+```php
+// Hook into builder contexts
+add_action('acss/bricks/in_builder_context', function() {
+    // Code runs only in Bricks builder
+});
+
+add_action('acss/core/in_preview_context', function() {
+    // Code runs in any preview context
+});
+
+add_action('acss/core/in_frontend_context', function() {
+    // Code runs on frontend only
+});
+```
+
+Builder-Specific Features
+
+Bricks Builder:
+- Custom color palette integration
+- Global classes panel
+- Conditions system support
+- Query loop compatibility
+
+Oxygen Builder:
+- Global colors sync
+- Spacing presets
+- Custom selectors
+- Structure panel integration
+
+Breakdance:
+- Design library integration
+- Global blocks support
+- Dynamic data compatibility
+
+Gutenberg:
+- Block variations
+- Theme.json integration
+- FSE support
+- Custom block styles
+
+Customizing Builder Dependencies:
+```php
+// Add custom dependencies to builder stylesheets
+add_filter('automaticcss_bricks_deps', function($deps) {
+    $deps[] = 'my-custom-styles';
+    return $deps;
+});
+```
+
+---
+
+Developer API Reference
+
+Key PHP Classes and Methods
+
+CSS_Engine Class:
+```php
+// Main CSS generation engine
+$css_engine = \Automaticcss\CSS_Engine\CSS_Engine::get_instance();
+
+// Regenerate all CSS
+$css_engine->generate_all_files();
+
+// Get generated CSS file URL
+$url = $css_engine->get_css_file_url('core');
+```
+
+Framework Core:
+```php
+// Access framework instance
+$framework = \Automaticcss\Framework\Core::get_instance();
+
+// Get processed variables
+$variables = $framework->get_variables();
+
+// Check if in builder context
+$in_builder = $framework->is_builder_context();
+```
+
+Configuration Access:
+```php
+// Load configuration files
+$config = \Automaticcss\Model\Config::get('framework');
+$variables = \Automaticcss\Model\Config::get('variables');
+
+// Get specific configuration value
+$value = \Automaticcss\Model\Database_Settings::get_setting('primary');
+```
+
+Variable Processing
+
+The variable system supports multiple types:
+- `color`: Color picker with automatic variations
+- `number`: Numeric input with unit support
+- `toggle`: On/off switches
+- `select`: Dropdown selections
+- `text`: Text inputs
+- `hidden`: Hidden values
+
+Variable Definition Example:
+```json
+{
+    "custom-spacing": {
+        "type": "number",
+        "default": 1.5,
+        "unit": "rem",
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "decimals": 1
+    }
+}
+```
+
+Conditional Loading:
+```json
+{
+    "condition": {
+        "type": "=",
+        "setting": "option-grid",
+        "value": "on"
+    }
+}
+```
+
+---
+
+Performance Optimization
+
+CSS Generation Strategy
+
+ACSS generates multiple CSS files for optimal performance:
+1. `automaticcss-core.css` - Core framework styles
+2. `automaticcss-vars.css` - CSS custom properties only
+3. `automaticcss-custom.css` - User's custom SCSS
+4. Builder-specific files when needed
+
+Optimization Techniques
+
+1. Conditional Loading:
+```php
+// Disable unused utilities in dashboard
+// Settings > Utilities > Toggle off unused features
+```
+
+2. File Caching:
+- CSS files are cached and only regenerated when settings change
+- Cache busting via version parameters
+- Browser caching headers properly set
+
+3. Critical CSS:
+- Variables file loaded in <head> for faster rendering
+- Core styles can be deferred if needed
+- Minimal specificity for easy overrides
+
+4. Tree Shaking:
+- Unused utilities automatically excluded
+- Conditional features only loaded when enabled
+- Platform-specific code isolated
+
+5. Custom SCSS Best Practices:
+```scss
+// Good: Use ACSS variables
+.custom {
+    padding: var(--space-m);
+    color: var(--primary);
+}
+
+// Avoid: Hard-coded values
+.custom {
+    padding: 20px; // Use variables instead
+    color: #007cba; // Use color system
+}
+```
+
+Debugging Tips
+
+1. Enable Debug Mode:
+```php
+define('ACSS_DEBUG', true); // In wp-config.php
+```
+
+2. Check Generated CSS:
+- View source for file paths
+- Inspect CSS custom properties in DevTools
+- Use computed styles panel
+
+3. Common Issues:
+- Cache conflicts: Clear all caches after changes
+- Specificity battles: Use lower specificity selectors
+- Missing styles: Check conditional loading settings
+
+4. Performance Monitoring:
+- Use browser DevTools Performance tab
+- Check CSS file sizes in Network tab
+- Monitor paint/layout metrics
+
+---

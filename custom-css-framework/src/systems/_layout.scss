@@ -1,0 +1,156 @@
+// =============================================================================
+// Layout System
+// =============================================================================
+// Generates comprehensive layout variables for grids, containers, and layouts
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+
+// =============================================================================
+// Layout Variable Generation
+// =============================================================================
+
+:root {
+  // ==========================================================================
+  // Container System
+  // ==========================================================================
+  
+  // Content width (already defined in foundation, but adding responsive variants)
+  --content-width-xs: 100%;
+  --content-width-s: 540px;
+  --content-width-m: 720px;
+  --content-width-l: 960px;
+  --content-width-xl: 1140px;
+  --content-width-xxl: 1320px;
+  
+  // Safe content width (with gutters)
+  --content-width-safe: calc(var(--content-width) - (var(--gutter) * 2));
+  
+  // ==========================================================================
+  // CSS Grid Templates
+  // ==========================================================================
+  
+  // Equal column grids (1-12 columns)
+  @for $i from 1 through 12 {
+    --grid-#{$i}: repeat(#{$i}, 1fr);
+  }
+  
+  // Unbalanced grid patterns
+  --grid-1-2: 1fr 2fr;
+  --grid-2-1: 2fr 1fr;
+  --grid-1-3: 1fr 3fr;
+  --grid-3-1: 3fr 1fr;
+  --grid-2-3: 2fr 3fr;
+  --grid-3-2: 3fr 2fr;
+  --grid-1-1-2: 1fr 1fr 2fr;
+  --grid-2-1-1: 2fr 1fr 1fr;
+  --grid-1-2-1: 1fr 2fr 1fr;
+  
+  // Auto-responsive grids (minimum column width approach)
+  --grid-auto-1: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  --grid-auto-2: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  --grid-auto-3: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  --grid-auto-4: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  --grid-auto-5: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  --grid-auto-6: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+  
+  // Responsive auto grids with different breakpoints
+  --grid-auto-xs: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+  --grid-auto-s: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  --grid-auto-m: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  --grid-auto-l: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  --grid-auto-xl: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  
+  // ==========================================================================
+  // Flexbox Templates
+  // ==========================================================================
+  
+  // Flex distribution patterns
+  --flex-start: flex-start;
+  --flex-center: center;
+  --flex-end: flex-end;
+  --flex-between: space-between;
+  --flex-around: space-around;
+  --flex-evenly: space-evenly;
+  
+  // Flex item sizing
+  --flex-none: 0 0 auto;
+  --flex-auto: 1 1 auto;
+  --flex-initial: 0 1 auto;
+  --flex-1: 1 1 0%;
+  --flex-2: 2 2 0%;
+  --flex-3: 3 3 0%;
+  
+  // ==========================================================================
+  // Aspect Ratios
+  // ==========================================================================
+  
+  --aspect-square: 1 / 1;
+  --aspect-video: 16 / 9;
+  --aspect-video-4-3: 4 / 3;
+  --aspect-photo: 3 / 2;
+  --aspect-portrait: 2 / 3;
+  --aspect-golden: 1.618 / 1;
+  --aspect-wide: 21 / 9;
+  
+  // ==========================================================================
+  // Z-Index Scale
+  // ==========================================================================
+  
+  @each $name, $value in config('z-index') {
+    --z-#{$name}: #{$value};
+  }
+  
+  // ==========================================================================
+  // Layout Positioning
+  // ==========================================================================
+  
+  // Common positioning values
+  --position-center: 50%;
+  --position-center-x: 50%;
+  --position-center-y: 50%;
+  
+  // Offset values using spacing scale
+  @each $size in map.keys(config('sizes')) {
+    --offset-#{$size}: var(--space-#{$size});
+  }
+  
+  // ==========================================================================
+  // Responsive Breakpoint Containers
+  // ==========================================================================
+  
+  // Container queries support (when available)
+  --container-xs: 20rem;   // 320px
+  --container-s: 30rem;    // 480px  
+  --container-m: 45rem;    // 720px
+  --container-l: 60rem;    // 960px
+  --container-xl: 71.25rem; // 1140px
+  --container-xxl: 82.5rem; // 1320px
+  
+  // ==========================================================================
+  // Layout Patterns
+  // ==========================================================================
+  
+  // Common layout patterns
+  --layout-sidebar-content: minmax(250px, 1fr) 3fr;
+  --layout-content-sidebar: 3fr minmax(250px, 1fr);
+  --layout-three-column: 1fr 2fr 1fr;
+  --layout-holy-grail: 1fr 3fr 1fr;
+  
+  // Card layouts
+  --layout-card-grid: repeat(auto-fit, minmax(280px, 1fr));
+  --layout-product-grid: repeat(auto-fit, minmax(220px, 1fr));
+  --layout-gallery-grid: repeat(auto-fit, minmax(200px, 1fr));
+  
+  // ==========================================================================
+  // Overflow Handling
+  // ==========================================================================
+  
+  // Scroll behavior
+  --scroll-smooth: smooth;
+  --scroll-auto: auto;
+  
+  // Scrollbar styling (webkit)
+  --scrollbar-width: thin;
+  --scrollbar-color: var(--neutral) var(--neutral-ultra-light);
+}

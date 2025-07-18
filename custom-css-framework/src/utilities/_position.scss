@@ -1,0 +1,319 @@
+// =============================================================================
+// Position Utilities
+// =============================================================================
+// Utility classes for positioning and z-index
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+
+// =============================================================================
+// Position Utilities
+// =============================================================================
+
+.relative {
+  position: relative !important;
+}
+
+.absolute {
+  position: absolute !important;
+}
+
+.fixed {
+  position: fixed !important;
+}
+
+.sticky {
+  position: sticky !important;
+}
+
+.static {
+  position: static !important;
+}
+
+// =============================================================================
+// Position Values
+// =============================================================================
+
+// Top, right, bottom, left
+.top--0 {
+  top: 0 !important;
+}
+
+.right--0 {
+  right: 0 !important;
+}
+
+.bottom--0 {
+  bottom: 0 !important;
+}
+
+.left--0 {
+  left: 0 !important;
+}
+
+// Centered positioning
+.top--center {
+  top: var(--position-center-y) !important;
+}
+
+.left--center {
+  left: var(--position-center-x) !important;
+}
+
+// T-shirt sizing for positioning
+@each $size in map.keys(config('sizes')) {
+  .top--#{$size} {
+    top: var(--space-#{$size}) !important;
+  }
+  
+  .right--#{$size} {
+    right: var(--space-#{$size}) !important;
+  }
+  
+  .bottom--#{$size} {
+    bottom: var(--space-#{$size}) !important;
+  }
+  
+  .left--#{$size} {
+    left: var(--space-#{$size}) !important;
+  }
+}
+
+// Negative positioning
+@each $size in map.keys(config('sizes')) {
+  .top--#{$size}-negative {
+    top: var(--space-#{$size}-negative) !important;
+  }
+  
+  .right--#{$size}-negative {
+    right: var(--space-#{$size}-negative) !important;
+  }
+  
+  .bottom--#{$size}-negative {
+    bottom: var(--space-#{$size}-negative) !important;
+  }
+  
+  .left--#{$size}-negative {
+    left: var(--space-#{$size}-negative) !important;
+  }
+}
+
+// =============================================================================
+// Inset Utilities
+// =============================================================================
+
+.inset--0 {
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+}
+
+@each $size in map.keys(config('sizes')) {
+  .inset--#{$size} {
+    top: var(--space-#{$size}) !important;
+    right: var(--space-#{$size}) !important;
+    bottom: var(--space-#{$size}) !important;
+    left: var(--space-#{$size}) !important;
+  }
+}
+
+.inset-x--0 {
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.inset-y--0 {
+  top: 0 !important;
+  bottom: 0 !important;
+}
+
+@each $size in map.keys(config('sizes')) {
+  .inset-x--#{$size} {
+    left: var(--space-#{$size}) !important;
+    right: var(--space-#{$size}) !important;
+  }
+  
+  .inset-y--#{$size} {
+    top: var(--space-#{$size}) !important;
+    bottom: var(--space-#{$size}) !important;
+  }
+}
+
+// =============================================================================
+// Z-Index Utilities
+// =============================================================================
+
+@each $name, $value in config('z-index') {
+  .z--#{$name} {
+    z-index: var(--z-#{$name}) !important;
+  }
+}
+
+// Numeric z-index values
+.z--0 {
+  z-index: 0 !important;
+}
+
+.z--10 {
+  z-index: 10 !important;
+}
+
+.z--20 {
+  z-index: 20 !important;
+}
+
+.z--30 {
+  z-index: 30 !important;
+}
+
+.z--40 {
+  z-index: 40 !important;
+}
+
+.z--50 {
+  z-index: 50 !important;
+}
+
+.z--auto {
+  z-index: auto !important;
+}
+
+// =============================================================================
+// Transform Utilities
+// =============================================================================
+
+.transform {
+  transform: var(--transform) !important;
+}
+
+.transform--none {
+  transform: none !important;
+}
+
+// Translation
+.translate-x--0 {
+  --transform-translate-x: 0;
+  transform: translateX(var(--transform-translate-x)) !important;
+}
+
+.translate-y--0 {
+  --transform-translate-y: 0;
+  transform: translateY(var(--transform-translate-y)) !important;
+}
+
+.translate--center {
+  transform: translate(-50%, -50%) !important;
+}
+
+.translate-x--center {
+  transform: translateX(-50%) !important;
+}
+
+.translate-y--center {
+  transform: translateY(-50%) !important;
+}
+
+// =============================================================================
+// Float Utilities
+// =============================================================================
+
+.float--left {
+  float: left !important;
+}
+
+.float--right {
+  float: right !important;
+}
+
+.float--none {
+  float: none !important;
+}
+
+.clear--left {
+  clear: left !important;
+}
+
+.clear--right {
+  clear: right !important;
+}
+
+.clear--both {
+  clear: both !important;
+}
+
+.clear--none {
+  clear: none !important;
+}
+
+// =============================================================================
+// Object Fit & Position
+// =============================================================================
+
+.object--contain {
+  object-fit: contain !important;
+}
+
+.object--cover {
+  object-fit: cover !important;
+}
+
+.object--fill {
+  object-fit: fill !important;
+}
+
+.object--none {
+  object-fit: none !important;
+}
+
+.object--scale-down {
+  object-fit: scale-down !important;
+}
+
+.object--center {
+  object-position: center !important;
+}
+
+.object--top {
+  object-position: top !important;
+}
+
+.object--right {
+  object-position: right !important;
+}
+
+.object--bottom {
+  object-position: bottom !important;
+}
+
+.object--left {
+  object-position: left !important;
+}
+
+// =============================================================================
+// Responsive Position Utilities
+// =============================================================================
+
+@each $bp-name, $bp-value in config('breakpoints') {
+  @media (min-width: $bp-value) {
+    .#{$bp-name}\:relative {
+      position: relative !important;
+    }
+    
+    .#{$bp-name}\:absolute {
+      position: absolute !important;
+    }
+    
+    .#{$bp-name}\:fixed {
+      position: fixed !important;
+    }
+    
+    .#{$bp-name}\:sticky {
+      position: sticky !important;
+    }
+    
+    .#{$bp-name}\:static {
+      position: static !important;
+    }
+  }
+}

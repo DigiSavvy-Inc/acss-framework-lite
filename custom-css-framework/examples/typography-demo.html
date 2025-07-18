@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography System Demo - Custom CSS Framework</title>
+    <link rel="stylesheet" href="../dist/framework.css">
+    <style>
+        body {
+            font-family: var(--font-primary);
+            line-height: var(--text-line-height);
+            margin: 0;
+            padding: var(--gutter);
+            background: var(--bg-color);
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-section {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color-light);
+        }
+        
+        .demo-box {
+            background: var(--neutral-ultra-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .scale-demo {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        code {
+            background: var(--base-trans-10);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: var(--font-mono);
+            font-size: var(--text-code);
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text--h1">Typography System Demo</h1>
+    <p class="text--l text--base-light">Explore the comprehensive typography system with fluid sizing, T-shirt scales, and responsive text.</p>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Heading Scale</h2>
+        <div class="scale-demo">
+            <h1 class="text--h1">Heading 1 - var(--h1)</h1>
+            <h2 class="text--h2">Heading 2 - var(--h2)</h2>
+            <h3 class="text--h3">Heading 3 - var(--h3)</h3>
+            <h4 class="text--h4">Heading 4 - var(--h4)</h4>
+            <h5 class="text--h5">Heading 5 - var(--h5)</h5>
+            <h6 class="text--h6">Heading 6 - var(--h6)</h6>
+        </div>
+        
+        <div class="demo-box">
+            <p class="text--display-1">Display 1 Text</p>
+            <p class="text--display-2">Display 2 Text</p>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Text Sizes - T-Shirt Scale</h2>
+        <div class="scale-demo">
+            <p class="text--xs">Extra Small Text (.text--xs) - Perfect for captions and disclaimers</p>
+            <p class="text--s">Small Text (.text--s) - Great for secondary information</p>
+            <p class="text--m">Medium Text (.text--m) - Default body text size</p>
+            <p class="text--l">Large Text (.text--l) - Emphasis and introductions</p>
+            <p class="text--xl">Extra Large Text (.text--xl) - Strong emphasis</p>
+            <p class="text--xxl">Double Extra Large Text (.text--xxl) - Maximum impact</p>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Fluid Typography</h2>
+        <p class="text--m">Resize your browser window to see fluid typography in action!</p>
+        
+        <div class="comparison">
+            <div>
+                <h3 class="text--h3">Static Sizing</h3>
+                <p class="text--l">This uses static sizing with .text--l</p>
+                <p class="text--m">This paragraph uses .text--m</p>
+                <p class="text--s">And this uses .text--s</p>
+            </div>
+            <div>
+                <h3 class="text--h3-fluid">Fluid Sizing</h3>
+                <p class="text--l-fluid">This uses fluid sizing with .text--l-fluid</p>
+                <p class="text--m-fluid">This paragraph uses .text--m-fluid</p>
+                <p class="text--s-fluid">And this uses .text--s-fluid</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Font Weights</h2>
+        <div class="scale-demo">
+            <p class="text--l text--light">Light Weight Text (.text--light)</p>
+            <p class="text--l text--normal">Normal Weight Text (.text--normal)</p>
+            <p class="text--l text--medium">Medium Weight Text (.text--medium)</p>
+            <p class="text--l text--semibold">Semibold Weight Text (.text--semibold)</p>
+            <p class="text--l text--bold">Bold Weight Text (.text--bold)</p>
+        </div>
+        
+        <p>Numeric weights also available: <span class="text--300">.text--300</span>, <span class="text--400">.text--400</span>, <span class="text--500">.text--500</span>, <span class="text--600">.text--600</span>, <span class="text--700">.text--700</span></p>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Text Styles & Decorations</h2>
+        
+        <div class="demo-box">
+            <p class="text--italic">This text is italic (.text--italic)</p>
+            <p class="text--uppercase">This text is uppercase (.text--uppercase)</p>
+            <p class="text--capitalize">this text is capitalized (.text--capitalize)</p>
+            <p class="text--underline">This text has underline (.text--underline)</p>
+            <p class="text--underline-wavy text--accent">Wavy underline in accent color (.text--underline-wavy)</p>
+            <p class="text--underline-dotted">Dotted underline (.text--underline-dotted)</p>
+            <p class="text--line-through">This text has line-through (.text--line-through)</p>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Text Alignment</h2>
+        
+        <div class="demo-box">
+            <p class="text--left">Left aligned text (.text--left)</p>
+            <p class="text--center">Center aligned text (.text--center)</p>
+            <p class="text--right">Right aligned text (.text--right)</p>
+            <p class="text--justify">Justified text looks great in paragraphs. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (.text--justify)</p>
+        </div>
+        
+        <p class="text--s text--base-light">Responsive alignment also available: <code>.tablet:text--center</code>, <code>.desktop:text--right</code></p>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Line Height Variations</h2>
+        
+        <div class="demo-box text--m">
+            <p class="text--leading-none">Line height none (.text--leading-none)<br>Great for large display text<br>Where lines are very close</p>
+            <br>
+            <p class="text--leading-tight">Line height tight (.text--leading-tight)<br>Good for headings<br>With moderate spacing</p>
+            <br>
+            <p class="text--leading-normal">Line height normal (.text--leading-normal)<br>Perfect for body text<br>With comfortable spacing</p>
+            <br>
+            <p class="text--leading-loose">Line height loose (.text--leading-loose)<br>More spacious feel<br>For relaxed reading</p>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Letter Spacing</h2>
+        
+        <div class="scale-demo text--l">
+            <p class="text--tracking-tighter">Tighter letter spacing (.text--tracking-tighter)</p>
+            <p class="text--tracking-tight">Tight letter spacing (.text--tracking-tight)</p>
+            <p class="text--tracking-normal">Normal letter spacing (.text--tracking-normal)</p>
+            <p class="text--tracking-wide">Wide letter spacing (.text--tracking-wide)</p>
+            <p class="text--tracking-wider">Wider letter spacing (.text--tracking-wider)</p>
+            <p class="text--tracking-widest">Widest letter spacing (.text--tracking-widest)</p>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Text Overflow & Wrapping</h2>
+        
+        <div class="demo-box">
+            <p class="text--truncate" style="max-width: 300px;">This is a very long text that will be truncated with ellipsis when it overflows the container (.text--truncate)</p>
+            <br>
+            <p class="text--nowrap bg--neutral-ultra-light" style="overflow: auto;">This text will not wrap and creates horizontal scroll when needed (.text--nowrap)</p>
+            <br>
+            <p class="text--break-words" style="max-width: 200px;">Verylongwordthatneedstobebrokentofitinthecontainer (.text--break-words)</p>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Font Families</h2>
+        
+        <div class="demo-box text--l">
+            <p class="font--primary">Primary font family - System UI stack (.font--primary)</p>
+            <p class="font--secondary">Secondary font family - Serif stack (.font--secondary)</p>
+            <p class="font--mono">Monospace font family - Code stack (.font--mono)</p>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">List Utilities</h2>
+        
+        <div class="comparison">
+            <div>
+                <h3 class="text--h4">Styled Lists</h3>
+                <ul class="list--disc">
+                    <li>Disc list item</li>
+                    <li>Another item</li>
+                    <li>Third item</li>
+                </ul>
+                <ol class="list--decimal">
+                    <li>Numbered item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ol>
+            </div>
+            <div>
+                <h3 class="text--h4">Unstyled List</h3>
+                <ul class="list--none">
+                    <li>No bullets</li>
+                    <li>Clean list</li>
+                    <li>No padding</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2 class="text--h2">Typography Variables</h2>
+        <p>The framework exposes all typography settings as CSS variables for maximum flexibility:</p>
+        
+        <div class="demo-box font--mono text--s">
+            <p>--h1 through --h6 (heading sizes)</p>
+            <p>--text-xs through --text-xxl (t-shirt sizes)</p>
+            <p>--font-primary, --font-secondary, --font-mono</p>
+            <p>--font-weight-light through --font-weight-bold</p>
+            <p>--text-line-height, --heading-line-height</p>
+            <p>--text-letter-spacing, --heading-letter-spacing</p>
+        </div>
+    </div>
+    
+</body>
+</html>

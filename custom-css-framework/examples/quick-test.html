@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Framework Test</title>
+    <link rel="stylesheet" href="../dist/framework.css">
+    <style>
+        body {
+            padding: 2rem;
+            font-family: var(--font-primary);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid var(--border-color-light);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text--h1 text--primary">Framework Test</h1>
+    
+    <div class="test-section">
+        <h2 class="text--h3 text--secondary">✓ Color System</h2>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <span class="bg--primary text--white" style="padding: 0.5rem;">Primary</span>
+            <span class="bg--primary-light text--primary-dark" style="padding: 0.5rem;">Primary Light</span>
+            <span class="bg--success text--white" style="padding: 0.5rem;">Success</span>
+            <span class="bg--danger-trans-20" style="padding: 0.5rem;">Danger 20%</span>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="text--h3 text--secondary">✓ Typography Scale</h2>
+        <p class="text--xs">Extra Small Text (xs)</p>
+        <p class="text--s">Small Text (s)</p>
+        <p class="text--m">Medium Text (m)</p>
+        <p class="text--l">Large Text (l)</p>
+        <p class="text--xl">Extra Large Text (xl)</p>
+        <p class="text--xxl">Double Extra Large Text (xxl)</p>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="text--h3 text--secondary">✓ Text Utilities</h2>
+        <p class="text--bold">Bold text</p>
+        <p class="text--italic text--primary">Italic primary text</p>
+        <p class="text--uppercase text--s">Uppercase small text</p>
+        <p class="text--underline-wavy text--accent">Wavy underline</p>
+        <p class="text--center bg--neutral-ultra-light" style="padding: 1rem;">Centered text</p>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="text--h3 text--secondary">✓ Fluid Typography</h2>
+        <p class="text--l-fluid">Resize your browser to see this text scale smoothly!</p>
+        <p class="text--s text--base-light">The text above uses fluid sizing (.text--l-fluid)</p>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="text--h3 text--secondary">✓ Spacing System (New .space-- utilities)</h2>
+        <div style="display: flex; gap: var(--space-s); flex-wrap: wrap;">
+            <div class="space--xs bg--neutral-ultra-light">xs space</div>
+            <div class="space--s bg--neutral-ultra-light">s space</div>
+            <div class="space--m bg--neutral-ultra-light">m space</div>
+            <div class="space--l bg--neutral-ultra-light">l space</div>
+        </div>
+        <br>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));" class="grid-gap--m">
+            <div class="bg--primary-light text--primary-dark space--s">Grid Item 1</div>
+            <div class="bg--primary-light text--primary-dark space--s">Grid Item 2</div>
+            <div class="bg--primary-light text--primary-dark space--s">Grid Item 3</div>
+        </div>
+        <p class="text--xs text--base-light">✓ New semantic naming: .space--xs instead of .padding--xs</p>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="text--h3 text--secondary">✓ Contextual Gaps</h2>
+        <div style="display: flex; flex-direction: column;" class="content-gap--s">
+            <p class="bg--accent-ultra-light space--s margin--0">Content with content-gap--s</p>
+            <p class="bg--accent-ultra-light space--s margin--0">Between these paragraphs</p>
+            <p class="bg--accent-ultra-light space--s margin--0">Using contextual spacing</p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="text--h3 text--success">✓ All Systems Working!</h2>
+        <p>CSS Variables: <code>var(--primary)</code> = <span style="color: var(--primary);">var(--primary)</span></p>
+        <p>Spacing: <code>var(--space-m)</code> = <span style="background: var(--primary-trans-20); padding: var(--space-m); display: inline-block;">var(--space-m)</span></p>
+        <p>Font Stack: <code style="font-family: var(--font-mono);">var(--font-mono)</code></p>
+    </div>
+</body>
+</html>

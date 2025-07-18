@@ -1,0 +1,290 @@
+// =============================================================================
+// Color Utilities
+// =============================================================================
+// Utility classes for text, background, and border colors
+
+@use 'sass:map';
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// =============================================================================
+// Helper Functions
+// =============================================================================
+
+// Generate all color names (brand + contextual)
+@function get-all-colors() {
+  $colors: config('colors');
+  $contextual: config('contextual-colors');
+  @return map.merge($colors, $contextual);
+}
+
+// Generate all color variations
+@function get-color-variations() {
+  @return ('ultra-light', 'light', 'dark', 'ultra-dark', 'hover');
+}
+
+// Generate transparency levels
+@function get-transparency-levels() {
+  @return (10, 20, 30, 40, 50, 60, 70, 80, 90);
+}
+
+// =============================================================================
+// Text Color Utilities
+// =============================================================================
+
+// Base text colors
+@each $name, $color in get-all-colors() {
+  .text--#{$name} {
+    color: var(--#{$name}) !important;
+  }
+}
+
+// Text color variations
+@each $name, $color in get-all-colors() {
+  @each $variation in get-color-variations() {
+    .text--#{$name}-#{$variation} {
+      color: var(--#{$name}-#{$variation}) !important;
+    }
+  }
+}
+
+// Text transparency variants
+@each $name, $color in get-all-colors() {
+  @each $level in get-transparency-levels() {
+    .text--#{$name}-trans-#{$level} {
+      color: var(--#{$name}-trans-#{$level}) !important;
+    }
+  }
+}
+
+// =============================================================================
+// Background Color Utilities
+// =============================================================================
+
+// Base background colors
+@each $name, $color in get-all-colors() {
+  .bg--#{$name} {
+    background-color: var(--#{$name}) !important;
+  }
+}
+
+// Background color variations
+@each $name, $color in get-all-colors() {
+  @each $variation in get-color-variations() {
+    .bg--#{$name}-#{$variation} {
+      background-color: var(--#{$name}-#{$variation}) !important;
+    }
+  }
+}
+
+// Background transparency variants
+@each $name, $color in get-all-colors() {
+  @each $level in get-transparency-levels() {
+    .bg--#{$name}-trans-#{$level} {
+      background-color: var(--#{$name}-trans-#{$level}) !important;
+    }
+  }
+}
+
+// =============================================================================
+// Border Color Utilities
+// =============================================================================
+
+// Base border colors
+@each $name, $color in get-all-colors() {
+  .border--#{$name} {
+    border-color: var(--#{$name}) !important;
+  }
+}
+
+// Border color variations
+@each $name, $color in get-all-colors() {
+  @each $variation in get-color-variations() {
+    .border--#{$name}-#{$variation} {
+      border-color: var(--#{$name}-#{$variation}) !important;
+    }
+  }
+}
+
+// Border transparency variants
+@each $name, $color in get-all-colors() {
+  @each $level in get-transparency-levels() {
+    .border--#{$name}-trans-#{$level} {
+      border-color: var(--#{$name}-trans-#{$level}) !important;
+    }
+  }
+}
+
+// =============================================================================
+// Combined Color Utilities
+// =============================================================================
+
+// Solid color combinations (background + contrasting text)
+.color-combo--primary {
+  background-color: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.color-combo--secondary {
+  background-color: var(--secondary) !important;
+  color: var(--white) !important;
+}
+
+.color-combo--accent {
+  background-color: var(--accent) !important;
+  color: var(--white) !important;
+}
+
+.color-combo--success {
+  background-color: var(--success) !important;
+  color: var(--white) !important;
+}
+
+.color-combo--warning {
+  background-color: var(--warning) !important;
+  color: var(--white) !important;
+}
+
+.color-combo--danger {
+  background-color: var(--danger) !important;
+  color: var(--white) !important;
+}
+
+.color-combo--info {
+  background-color: var(--info) !important;
+  color: var(--white) !important;
+}
+
+// Light color combinations (light background + dark text)
+.color-combo--primary-light {
+  background-color: var(--primary-ultra-light) !important;
+  color: var(--primary-dark) !important;
+}
+
+.color-combo--secondary-light {
+  background-color: var(--secondary-ultra-light) !important;
+  color: var(--secondary-dark) !important;
+}
+
+.color-combo--accent-light {
+  background-color: var(--accent-ultra-light) !important;
+  color: var(--accent-dark) !important;
+}
+
+.color-combo--success-light {
+  background-color: var(--success-ultra-light) !important;
+  color: var(--success-dark) !important;
+}
+
+.color-combo--warning-light {
+  background-color: var(--warning-ultra-light) !important;
+  color: var(--warning-dark) !important;
+}
+
+.color-combo--danger-light {
+  background-color: var(--danger-ultra-light) !important;
+  color: var(--danger-dark) !important;
+}
+
+.color-combo--info-light {
+  background-color: var(--info-ultra-light) !important;
+  color: var(--info-dark) !important;
+}
+
+// =============================================================================
+// Color Wheel Transparency Demo
+// =============================================================================
+
+// Specific styling for transparencies content div
+div#transparencies-content {
+  background: linear-gradient(
+    to bottom, 
+    #f0f0f0 0rem,      /* 1rem stripe */
+    #f0f0f0 1rem, 
+    transparent 1rem,   /* 2rem gap */
+    transparent 3rem, 
+    #f0f0f0 3rem,      /* 1rem stripe */
+    #f0f0f0 4rem, 
+    transparent 4rem,   /* 2rem gap */
+    transparent 6rem
+  );
+  background-size: 100% 6rem;
+  background-repeat: repeat-y;
+}
+
+// Special styling for color wheel transparencies section only
+.color-wheels--transparency {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--grid-gap-l);
+  margin: 2rem 0;
+  
+  // Striped background pattern to show transparency effect
+  background: 
+    linear-gradient(
+      to bottom,
+      #f0f0f0 0,      // First stripe
+      #f0f0f0 1rem,   // 1rem height
+      transparent 1rem,
+      transparent 3rem, // 2rem gap
+      #f0f0f0 3rem,    // Second stripe
+      #f0f0f0 4rem,    // 1rem height
+      transparent 4rem,
+      transparent 6rem  // 2rem gap
+    );
+  background-size: 100% 6rem;
+  background-repeat: repeat-y;
+  
+  // Optional: Add alternating diagonal stripes for better transparency visibility
+  &.color-wheels--transparency-checkered {
+    background: 
+      repeating-linear-gradient(
+        45deg,
+        #f5f5f5,
+        #f5f5f5 10px,
+        #e0e0e0 10px,
+        #e0e0e0 20px
+      );
+  }
+  
+  // Optional: Dark mode version
+  &.color-wheels--transparency-dark {
+    background: 
+      linear-gradient(
+        to bottom,
+        #2a2a2a 0,
+        #2a2a2a 1rem,
+        transparent 1rem,
+        transparent 3rem,
+        #2a2a2a 3rem,
+        #2a2a2a 4rem,
+        transparent 4rem,
+        transparent 6rem
+      );
+    background-size: 100% 6rem;
+    background-repeat: repeat-y;
+  }
+}
+
+// =============================================================================
+// Responsive Color Utilities
+// =============================================================================
+
+// Generate responsive variants for key colors
+@each $bp-name, $bp-value in config('breakpoints') {
+  @media (min-width: $bp-value) {
+    // Text colors
+    @each $name in ('primary', 'secondary', 'accent', 'base', 'white', 'black') {
+      .#{$bp-name}\:text--#{$name} {
+        color: var(--#{$name}) !important;
+      }
+    }
+    
+    // Background colors
+    @each $name in ('primary', 'secondary', 'accent', 'white', 'neutral') {
+      .#{$bp-name}\:bg--#{$name} {
+        background-color: var(--#{$name}) !important;
+      }
+    }
+  }
+}
